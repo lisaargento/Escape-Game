@@ -1,0 +1,26 @@
+@import url(https://fonts.bunny.net/css?family=allura:400);
+
+#barre{
+    position: fixed;
+    top: 0px;
+    height: 40px;
+    width: 100%;
+    background: linear-gradient(to right,  rgb(0, 162, 255), yellow, orange);
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    font-family: allura;
+    font-size: 2em;
+    font-weight: bold;
+    clear: right;
+    
+}
+
+@media (max-width: 600px) {
+    #barre{
+        height: 30px;
+        width: 100%;
+        font-size: 1em;
+  }
