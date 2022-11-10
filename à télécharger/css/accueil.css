@@ -2,7 +2,7 @@
  
  /* Style pour la page d'accueil*/
  #menu{
-    background-image: url("");
+    background-image: url("../img/image_accueil.png");
     background-size: cover;
     background-repeat: no-repeat;
  }
@@ -14,11 +14,7 @@ h1 {
     margin: 0;
     
   }
-.prenom{
-    font-family: allura;
-    font-size: 3em;
-    font-weight: bold;
-}
+
 #presentation{
     background-color: aliceblue;
     margin-left: 30px;
