@@ -1,6 +1,6 @@
 <?php
 
-$link = mysqli_connect('localhost', 'root', 'root', 'BdD');
+$link = mysqli_connect('localhost', 'root', 'root', 'bddEscapeGame');
 
 if (!$link) {
   die('Erreur de connexion');
