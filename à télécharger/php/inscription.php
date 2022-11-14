@@ -3,17 +3,16 @@
   <head>
     <meta charset="UTF-8">
     <title>Escape Game </title>
-    <meta> 
     <link rel="stylesheet" href="../css/accueil.css"/>
   </head>
 
   <body id="identification">
     <?php 
-          include("connect.php"); 
+          include("../php/connect.php"); 
     ?>
     <h1 id="titre">Un tour de France</h1>
     <div>
-      <a id="sortir" href="accueil.html"><img src="img/sortir.png" style="width:90px;height:70px;"></a>
+      <a id="sortir" href="../accueil.html"><img src="../img/sortir1.png" style="width:90px;height:70px;"></a>
     </div>
         <form action="#" method="get" id="inscription">
             <fieldset>
@@ -33,3 +32,9 @@
   </body>
   
   </html>
+
+
+
+
+
+  
