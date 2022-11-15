@@ -8,7 +8,7 @@
 
   <body id="identification">
     <?php 
-          include("../php/connect.php"); 
+      include("../php/connect.php"); 
     ?>
 
     <h1 id="titre">Un tour de France</h1>
