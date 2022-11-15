@@ -11,6 +11,11 @@ Pour nous aider il suffit de suivre les instructions qui suivent !
 ### Installation
 - télécharger tous les documents 
 
+POUR LA BDD :
+- utiliser MAMP
+- importer le fichier "bddEscapeGame.sql" dans MySQL de MAMP
+
+
 ```
 à copier
 ```
