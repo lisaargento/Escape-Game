@@ -12,7 +12,7 @@
   <body>
     <div id="bouttons">
       <a id="commencer" href="../php/inscription.php">Commencer !</a>
-      <a id="resultats" href="../resultats.html">Résultats</a>
+      <a id="resultats" href="../php/resultats.php">Résultats</a>
     </div>
 
     <div id="map"></div>
