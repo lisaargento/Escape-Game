@@ -1,18 +1,6 @@
-<!DOCTYPE html>
-<html lang="fr">
-  <head>
-    <meta charset="UTF-8">
-    <title>Escape Game </title>
-    <meta> 
-    <link rel="stylesheet" href="../css/accueil.css"/>
-  </head>
+<?php 
 
-  <body id="menu">
-    <h1 id="titre">Un tour de France</h1>
+include('connect.php')
 
-    <a id="commencer" href="../accueil.html">Commencer !</a>
 
-    
-  </body>
-  
-  </html>
+?>
