@@ -36,6 +36,11 @@ h1 {
 
 
 /* Style des bouttons */
+#bouttons{
+    text-align: center;
+}
+
+
 #resultats, #commencer{
     color: black;
     ;
@@ -45,10 +50,9 @@ h1 {
     border: solid 1px rgba(0, 0, 0, 0.774);
     width: 180px;
     height: 120px;
-    background-image: linear-gradient(#ad3aebc5, #8529e1a8); /*voir pour ajouter animations*/
+    background-image: linear-gradient(#e7993a, #cc9040); /*voir pour ajouter animations*/
     margin: 20px;
     padding: 10px;
     border-radius: 10px;
     background-position: center;
-    margin-left: 35%;
 }
