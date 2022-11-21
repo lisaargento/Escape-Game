@@ -3,9 +3,6 @@
 #pages_result{
     background-image: url("../img/image_accueil1.png");
     background-size: cover;
-    -webkit-filter: blur(8px);
-    /*filter: blur(2px);
-    filter-background: blur(2px);*/
 }
 
 #titre {
