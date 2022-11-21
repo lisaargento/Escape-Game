@@ -9,6 +9,7 @@ console.log(Date);
 */
 
 
+
 // AFFICHAGE DE LA CARTE
 var map = L.map('map');
 
