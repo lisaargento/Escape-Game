@@ -35,9 +35,14 @@ map.setView(positionDepart, 15);
 
 // AFFICHAGE DES OBJETS
 
+let idObjet = 1;
 
-fetch 
-
+fetch('main.php?id='+idObjet)
+.then(result => result.json())
+.then(Objetjson => {
+    console.log(Objetjson);
+    affichageObjet(Objetjson);
+})
 
 
 function affichageObjet(objet) {

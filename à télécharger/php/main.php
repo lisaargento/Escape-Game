@@ -3,31 +3,18 @@
 include('connect.php');
 
 
-// Remplir d'instruction !!
+// RECUPERER LES INFORMATIONS D'UN OBJET SELON SON ID
 
- 
-
-/*
-      // ENREGISTREMENT DU NOM, PRENOM ET PSEUDO DU JOUEUR 
-      if (isset($_GET['valider'])) {
-        $nom = $_GET['nom'];
-        $prenom = $_GET['prenom'];
-        $pseudo = $_GET['pseudo'];
-        $valider = $_GET['valider'];
-        $sauvDebut= "INSERT INTO joueurs (nom, prenom, pseudo) VALUES ($nom, $prenom, $pseudo)";
-      }
-      
-      */
-
-
-/*
 if (isset($_GET['id'])) {
-  $TableJeu = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id");
-  foreach ($TableJeu as $result) {
-    echo json_encode($result);
+  $id = $_GET['id'];
+
+  $param = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id");
+  foreach ($param as $result) {
+    $objet[] = $result;
   }
+  echo json_encode($objet);
 }
-*/
+
 
 
 ?>
