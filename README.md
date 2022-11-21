@@ -13,7 +13,7 @@ Pour nous aider il suffit de suivre les instructions qui suivent !
 
 POUR LA BDD :
 - utiliser MAMP
-- importer le fichier "bddEscapeGame.sql" dans MySQL de MAMP
+- importer le fichier "bddEscapeGame.sql" dans MySQL de MAMP (! ATTENTION ! Si vous n'êtes pas sur MacOS, il faudra modifier les fichiers php de connexion aux bases de données. Le mot de passe de connexion ne sera plus "root" mais "".)
 
 
 ```
