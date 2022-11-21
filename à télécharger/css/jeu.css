@@ -1,0 +1,10 @@
+#sortir{
+    display: flex;
+    flex-direction: row-reverse;
+}/* ne fonctionne pas!!!!!!!!!!!!!!!*/
+
+#map {
+    height: 100vh;
+    margin : 1%;
+}
+
