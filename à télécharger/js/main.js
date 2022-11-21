@@ -27,7 +27,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // AFFICHAGE DES OBJETS
 
 var img = L.icon({
-    iconUrl: '../img/VelosCasses.png',
+    iconUrl: '../img/casses.png',
     iconSize:     [64, 64], // taille de l'icone
     iconAnchor:   [32, 64], // point de l'icone qui correspondra à la position du marker
     popupAnchor:  [-10, -76] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
