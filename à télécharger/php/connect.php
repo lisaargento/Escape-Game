@@ -3,7 +3,7 @@
 header('content-Type: application/json');
 
 // CONNEXION A LA BDD
-$link = mysqli_connect('localhost', 'root', 'root', 'bddEscapeGame');
+$link = mysqli_connect('localhost', 'root', 'root', 'bddescapegame');
 
 if (!$link) {
   die('Erreur de connexion');
