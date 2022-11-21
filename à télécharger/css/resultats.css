@@ -1,5 +1,13 @@
 @import url(https://fonts.bunny.net/css?family=allura:400);
 
+#pages_result{
+    background-image: url("../img/image_accueil1.png");
+    background-size: cover;
+    -webkit-filter: blur(8px);
+    /*filter: blur(2px);
+    filter-background: blur(2px);*/
+}
+
 #titre {
     font-family: allura;
     font-size: 5em;
@@ -29,4 +37,4 @@
     background-image: url("../img/retour.jpg");
 }
 
-/*filter: blur(2px);*/
+
