@@ -1,6 +1,6 @@
 <?php
 
-header('content-Type: application/json');
+// header('content-Type: application/json');
 
 // CONNEXION A LA BDD
 $link = mysqli_connect('localhost', 'root', 'root', 'bddEscapeGame');

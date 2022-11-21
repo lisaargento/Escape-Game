@@ -1,3 +1,10 @@
+<?php 
+
+include('php/inscription.php');
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
   <head>

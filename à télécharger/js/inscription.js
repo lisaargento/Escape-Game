@@ -47,8 +47,6 @@ function validationformulaire (event) {
         event.preventDefault();
         alert("Au moins l'un des 3 champs n'est pas renseigné ...");
     }
-    
-    fetch('../php/inscription.php?nom='+nom.value+'&prenom='+prenom.value+'&pseudo='+pseudo.value);
 
 }
 
