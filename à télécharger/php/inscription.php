@@ -3,7 +3,6 @@
 include('connect.php');
 
 if( isset( $_GET['nom'] ) ) {
-    echo $_GET["nom"];
     $nom = $_GET['nom'];
     $prenom = $_GET['prenom'];
     $pseudo = $_GET['pseudo'];
