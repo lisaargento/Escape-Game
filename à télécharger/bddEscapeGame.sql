@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 21 nov. 2022 à 12:14
+-- Généré le : lun. 21 nov. 2022 à 21:51
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `jeu` (
   `id` int(2) NOT NULL,
   `nomobjet` varchar(20) NOT NULL,
-  `indice` varchar(100) NOT NULL,
+  `indice` varchar(300) NOT NULL,
   `latitute` float NOT NULL,
   `longitude` float NOT NULL,
   `minzoom` int(2) NOT NULL,
@@ -38,6 +38,13 @@ CREATE TABLE `jeu` (
   `type` int(2) NOT NULL,
   `idbloque` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `jeu`
+--
+
+INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitute`, `longitude`, `minzoom`, `icone`, `type`, `idbloque`) VALUES
+(1, 'veloscasses', 'Ohhh non ! Nos vélos sont cassés ...\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/casses.png', 4, 0);
 
 -- --------------------------------------------------------
 
@@ -55,6 +62,15 @@ CREATE TABLE `joueurs` (
   `score` float DEFAULT NULL,
   `classement` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `joueurs`
+--
+
+INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score`, `classement`) VALUES
+(4, 'Girardin', 'Claire', 'Clairette', NULL, NULL, NULL, NULL),
+(5, 'Girardin', 'Claire', 'Clairette', NULL, NULL, NULL, NULL),
+(6, 'Argento', 'Lisa', 'lisaaaaa', NULL, NULL, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -80,13 +96,13 @@ ALTER TABLE `joueurs`
 -- AUTO_INCREMENT pour la table `jeu`
 --
 ALTER TABLE `jeu`
-  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
