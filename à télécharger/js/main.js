@@ -40,8 +40,8 @@ let idObjet = 1;
 fetch('../php/main.php?id='+idObjet)
 .then(result => result.json())
 .then(Objetjson => {
-    console.log(Objetjson);
-    affichageObjet(Objetjson);
+    console.log(Objetjson[0]);
+    affichageObjet(Objetjson[0]);
 })
 
 

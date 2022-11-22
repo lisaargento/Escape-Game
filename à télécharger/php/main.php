@@ -8,11 +8,16 @@ include('connect.php');
 if (isset($_GET['id'])) {
   $id = $_GET['id'];
 
-  $param = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id");
-  foreach ($param as $result) {
+  $request = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id");
+  $objet = [];
+  foreach ($request as $result) {
     $objet[] = $result;
   }
-  echo json_encode($objet);
+  echo json_encode($objet, JSON_NUMERIC_CHECK); // pour que tout ce soit pas en chaine de caractère => bon retour JSON !
+
+
+
+
 }
 
 
