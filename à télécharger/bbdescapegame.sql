@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 21 nov. 2022 à 21:51
+-- Généré le : lun. 21 nov. 2022 à 22:14
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bddEscapeGame`
+-- Base de données : `bbdescapegame`
 --
 
 -- --------------------------------------------------------

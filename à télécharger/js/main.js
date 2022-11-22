@@ -35,8 +35,14 @@ map.setView(positionDepart, 15);
 
 // AFFICHAGE DES OBJETS
 
+let idObjet = 1;
 
-fetch 
+fetch('../php/main.php?id='+idObjet)
+.then(result => result.json())
+.then(Objetjson => {
+    console.log(Objetjson);
+    affichageObjet(Objetjson);
+})
 
 
 
@@ -49,7 +55,7 @@ function affichageObjet(objet) {
         popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
     });
 
-    var marker = L.marker([objet.lat, objet.long], {icon: img});
+    var marker = L.marker([objet.latitude, objet.longitude], {icon: img});
     marker.bindPopup(objet.indice);
     
     // Apparition selon le zoom
@@ -69,11 +75,5 @@ function affichageObjet(objet) {
 
 
 
-
-
-
-
-
-// GERER LES OBJETS
 
 
