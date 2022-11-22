@@ -45,7 +45,8 @@ CREATE TABLE `jeu` (
 
 INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitute`, `longitude`, `minzoom`, `icone`, `type`, `idbloque`) VALUES
 (1, 'veloscasses', 'Ohhh non ! Nos vélos sont cassés ...\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/casses.png', 4, 0);
-
+(2, 'cadenas', 'Il me semble que code est la date de la création de l’Académie du Climat de Paris, Place Baudoyer, tu sais à côté de l’hôtel de ville de Paris?', 48.841, 2.58736, 20, '../img/cadenas.png', 3, 3);
+(3, 'plaque', '', 48.8563, 2.35584, 17, '../img/plaque.jpg', 1, 0);
 -- --------------------------------------------------------
 
 --
