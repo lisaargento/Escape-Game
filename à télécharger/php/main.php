@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
   foreach ($request as $result) {
     $objet[] = $result;
   }
-  echo json_encode($objet, JSON_NUMERIC_CHECK); // pour que tout ce soit pas en chaine de caractère => bon retour JSON !
+  echo json_encode($objet, JSON_NUMERIC_CHECK); // pour que tout ne soit pas en chaine de caractère => bon retour JSON !
 
 
 
