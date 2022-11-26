@@ -28,12 +28,20 @@ map.setView(positionDepart, 15);
 
 // AFFICHAGE DES OBJETS
 
-let idObjet = 1;
 
 
 
-function paramObjet(id , idbloque) {
-    fetch('../php/main.php?id='+id+'&idbloque='+idbloque)
+
+
+
+// FONCTIONS UTILES
+
+
+// Renvoie toutes les informations d'un objet en fonction de son id ou de son idbloque (retour JSON)
+function paramObjet(id , code) {
+    // code = 0 => id
+    // code = 1 => idbloque
+    fetch('../php/main.php?id='+id+'&code='+code)
     .then(result => result.json())
     .then(Objetjson => {
         console.log(Objetjson[0]);
@@ -42,21 +50,18 @@ function paramObjet(id , idbloque) {
 }
 
 
-
-
-
+// Affiche un objet en prenant en compte tous ses paramètres (entrée JSON)
 function affichageObjet(objet) {
-
+    // définition de l'icon
     var img = L.icon({
         iconUrl: objet.icone, // lien de l'image !!!!! entre guillement vérifier la sortie JSON !!!!!!
         iconSize:     [50, 50], // taille de l'icone
         iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
         popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
     });
-
+    // affichage du marker et du popup
     var marker = L.marker([objet.latitude, objet.longitude], {icon: img});
     marker.bindPopup(objet.indice);
-    
     // Apparition selon le zoom
     map.on('zoomend', function(){
         if (map.getZoom() < objet.minzoom){
@@ -66,11 +71,8 @@ function affichageObjet(objet) {
             marker.addTo(map);
         }
     })
-
 }
 
-
-$objet = paramObjet(idObjet, '');
 
 
 
