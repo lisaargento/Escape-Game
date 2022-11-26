@@ -26,23 +26,22 @@ map.setView(positionDepart, 15);
 
 
 
-
-
-
-
-
-
-
 // AFFICHAGE DES OBJETS
 
 let idObjet = 1;
 
-fetch('../php/main.php?id='+idObjet)
-.then(result => result.json())
-.then(Objetjson => {
-    console.log(Objetjson[0]);
-    affichageObjet(Objetjson[0]);
-})
+
+
+function paramObjet(id , idbloque) {
+    fetch('../php/main.php?id='+id+'&idbloque='+idbloque)
+    .then(result => result.json())
+    .then(Objetjson => {
+        console.log(Objetjson[0]);
+        affichageObjet(Objetjson[0]);
+    })
+}
+
+
 
 
 
@@ -69,6 +68,9 @@ function affichageObjet(objet) {
     })
 
 }
+
+
+$objet = paramObjet(idObjet, '');
 
 
 
