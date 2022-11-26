@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Nov 25, 2022 at 02:38 PM
--- Server version: 5.7.24
--- PHP Version: 8.0.1
+-- Hôte : localhost:8889
+-- Généré le : sam. 26 nov. 2022 à 09:01
+-- Version du serveur :  5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,20 +18,20 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bddescapegame`
+-- Base de données : `bddescapegame`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jeu`
+-- Structure de la table `jeu`
 --
 
 CREATE TABLE `jeu` (
   `id` int(2) NOT NULL,
   `nomobjet` varchar(20) NOT NULL,
   `indice` varchar(300) NOT NULL,
-  `latitute` float NOT NULL,
+  `latitude` float NOT NULL,
   `longitude` float NOT NULL,
   `minzoom` int(2) NOT NULL,
   `icone` varchar(100) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `jeu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jeu`
+-- Déchargement des données de la table `jeu`
 --
 
-INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitute`, `longitude`, `minzoom`, `icone`, `type`, `idbloque`) VALUES
+INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom`, `icone`, `type`, `idbloque`) VALUES
 (1, 'velos_casses', 'Ohhh non ! Nos vélos sont cassés ...\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/velos_casses.png', 4, 5),
 (2, 'cadenas', 'Il me semble que code est la date de la création de l’Académie du Climat de Paris, Place Baudoyer, tu sais à côté de l’hôtel de ville de Paris?', 48.841, 2.58736, 20, '../img/cadenas.png', 3, 4),
 (3, 'plaque', '', 48.8563, 2.35584, 17, '../img/plaque.jpg', 1, 2),
@@ -59,7 +59,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitute`, `longitude`, `minzoom
 -- --------------------------------------------------------
 
 --
--- Table structure for table `joueurs`
+-- Structure de la table `joueurs`
 --
 
 CREATE TABLE `joueurs` (
@@ -74,7 +74,7 @@ CREATE TABLE `joueurs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `joueurs`
+-- Déchargement des données de la table `joueurs`
 --
 
 INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score`, `classement`) VALUES
@@ -88,33 +88,33 @@ INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score
 (11, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `jeu`
+-- Index pour la table `jeu`
 --
 ALTER TABLE `jeu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `joueurs`
+-- Index pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `jeu`
+-- AUTO_INCREMENT pour la table `jeu`
 --
 ALTER TABLE `jeu`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT for table `joueurs`
+-- AUTO_INCREMENT pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;

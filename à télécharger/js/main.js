@@ -37,6 +37,12 @@ map.setView(positionDepart, 15);
 // FONCTIONS UTILES
 
 
+let $id =  1;
+let $code = 0;
+
+paramObjet($id, $code);
+
+
 // Renvoie toutes les informations d'un objet en fonction de son id ou de son idbloque (retour JSON)
 function paramObjet(id , code) {
     // code = 0 => id
@@ -45,7 +51,9 @@ function paramObjet(id , code) {
     .then(result => result.json())
     .then(Objetjson => {
         console.log(Objetjson[0]);
-        affichageObjet(Objetjson[0]);
+        console.log(Objetjson[0].latitude);
+        console.log(Objetjson[0].longitude);
+        //affichageObjet(Objetjson[0]);
     })
 }
 
@@ -74,7 +82,7 @@ function affichageObjet(objet) {
 }
 
 
-
+ 
 
 
 
