@@ -26,22 +26,19 @@ map.setView(positionDepart, 15);
 
 
 
-// AFFICHAGE DES OBJETS
+// DEROULEMENT DE LA PARTIE
 
 
-
-
-
-
-
-// FONCTIONS UTILES
-
-
+// Initialisation de la partie : on affiche directement le premier objet
 let $id =  1;
 let $code = 0;
 
 paramObjet($id, $code);
 
+
+
+
+// FONCTIONS UTILES
 
 // Renvoie toutes les informations d'un objet en fonction de son id ou de son idbloque (retour JSON)
 function paramObjet(id , code) {
