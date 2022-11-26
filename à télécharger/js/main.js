@@ -51,9 +51,7 @@ function paramObjet(id , code) {
     .then(result => result.json())
     .then(Objetjson => {
         console.log(Objetjson[0]);
-        console.log(Objetjson[0].latitude);
-        console.log(Objetjson[0].longitude);
-        //affichageObjet(Objetjson[0]);
+        affichageObjet(Objetjson[0]);
     })
 }
 
