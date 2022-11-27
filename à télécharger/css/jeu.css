@@ -37,9 +37,9 @@
     right: 2vw;
     text-align: center;
     font-weight: bold;
-    background-color: rgb(85, 23, 23);
+    background-color: orange;
     border-radius: 5px;
-    border-style: groove;
+    border-style: inset;
     height: 85vh;
     width: 20vw;
     z-index: 2;
