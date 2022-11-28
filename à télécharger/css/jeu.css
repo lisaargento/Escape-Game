@@ -31,7 +31,7 @@
 
 
 #map {
-    height: 91vh;
+    height: 90vh;
     flex-basis: 80vw;
     z-index: 1;         
 }
@@ -54,10 +54,11 @@
     border-radius: 5px;
     border-style: inset;
     height: 70vh;
-    width: 19vw;
+    width: 18vw;
     z-index: 2;
 }
 #obj{
+    padding-top: 10vh;
     display: flex;
     flex-wrap: wrap;
 }

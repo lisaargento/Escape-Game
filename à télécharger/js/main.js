@@ -121,16 +121,20 @@ function affichageObjet(objet) {
 }
 
 
-
+//Affichage des objet dans l'inventaire
+var inventaire = document.getElementbyId(obj);
 
 function traitementRecup(objet, marker) {
     // supprimer le marker de la carte
     marker.remove();
 
     // mettre l'objet dans l'inventaire
-    
-    // cf Lisa <3
-
+/*
+function mettre_inventaire(marker){
+    marker.setAttribute("style=width:15vw;height:18vh;", );
+    inventaire.appendChild(marker)
+    }
+*/
 }
 
 
