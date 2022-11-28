@@ -7,20 +7,8 @@ include('connect.php');
 
 if ( isset($_GET['id']) ) {
   $id = $_GET['id'];
-  $code = $_GET['code'];
 
-  // requete selon l'id
-  if ($code == 0) {
-    $request = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id;");
-  }
-  if ($code == 1) {
-    $request = mysqli_query($link, "SELECT * FROM jeu WHERE idbloque = $id;");
-  }
-  /*
-  else {
-    trigger_error("Le code doit être 0 ou 1. Faute de frappe !", E_USER_ERROR);
-  }
-  */
+  $request = mysqli_query($link, "SELECT * FROM jeu WHERE id = $id;");
 
   $objet = [];
   foreach ($request as $result) {

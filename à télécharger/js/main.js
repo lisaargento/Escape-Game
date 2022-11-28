@@ -31,33 +31,40 @@ map.setView(positionDepart, 15);
 
 // Initialisation de la partie : on affiche directement le premier objet
 let $id =  1;
-let $code = 0;
+paramObjet($id);
+
+/*
+
+ A FAIRE
+
+conditions de vélos réparées et carte postale dans l'inventaire !!!
+3 "initalisations"
+
+*/
+
 
 
 
 
 // FONCTIONS UTILES
 
-//  toutes les informations d'un objet en fonction de son id ou de son idbloque (retour JSON)
-function paramObjet(id , code) {
-    // code = 0 => id
-    // code = 1 => idbloque
-    let jsondata;
-    fetch('../php/main.php?id='+id+'&code='+code)
+// Récupère toutes les informations d'un objet en fonction de son id sous format JSON et appelle la fonction affichageObjet
+function paramObjet(id) {
+    fetch('../php/main.php?id='+id)
     .then(result => result.json())
-    .then(data => {
-        // console.table(data[0]);
-        jsondata = data[0];
+    .then(objetjson => {
+        console.table(objetjson[0]);
+        affichageObjet(objetjson[0]);
     })
-    return jsondata;
 }
 
 
 
-
-
-// Affiche un objet en prenant en compte tous ses paramètres (entrée JSON)
+// Affiche un objet en prenant en compte tous ses paramètres (entrée JSON) et renvoie vers le traitement approprié en fonction de son type
 function affichageObjet(objet) {
+
+    // AFFICHAGE DE L'OBJET
+
     // définition de l'icon
     var img = L.icon({
         iconUrl: objet['icone'], // lien de l'image !!!!! entre guillement vérifier la sortie JSON !!!!!!
@@ -65,9 +72,14 @@ function affichageObjet(objet) {
         iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
         popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
     });
-    // affichage du marker et du popup
+    // affichage du marker et du popup lorsqu'il y a un indice
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
-    marker.bindPopup(objet['indice']);
+    
+    if (objet['indice'] != NULL) {
+        marker.bindPopup(objet['indice']);
+    }
+    
+    
     // Apparition selon le zoom
     map.on('zoomend', function(){
         if (map.getZoom() < objet['minzoom']){
@@ -77,13 +89,62 @@ function affichageObjet(objet) {
             marker.addTo(map);
         }
     })
+
+
+    // ENVOIE VERS LE TRAITEMENT APPROPRIE LORS DU CLICK EN FONCTION DU TYPE DE L'OBJET
+    $type = objet['type'];
+
+    if ($type == 1 && objet['idSolution'] != NULL) {
+        marker.addEventListener('click', traitementCode(objet, marker));
+    }
+
+    if ($type == 2) {
+        marker.addEventListener('click', traitementRecup(objet, marker));
+    }
+
+    if ($type == 3) {
+        marker.addEventListener('click', traitementBloqueCode(objet, marker));
+    }
+
+    if ($type == 4) {
+        marker.addEventListener('click', traitementBloqueRecup(objet, marker));
+    }
+
 }
 
 
- 
+
+
+function traitementCode(objet, marker) {
+    idSolution = objet['idSolution'];
+    paramObjet(idSolution);
+    
+}
+
+function traitementRecup(objet, marker) {
+    // supprimer le marker de la carte
+    marker.remove();
+
+    // mettre l'objet dans l'inventaire
+    
+    // cf Lisa <3
+
+}
+
+
+function traitementBloqueCode(objet, marker) {
+
+
+
+}
+
+function traitementBloqueRecup(objet, marker) {
+    
+}
 
 
 
 
-
-
+/*
+Comment supprimer les objets au fur et à mesure ?
+*/
