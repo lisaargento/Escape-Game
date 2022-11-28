@@ -21,8 +21,13 @@
     font-size: 2em;
     font-weight: bold;
     border-style: groove;
+    padding-top: 1vh;
     /*clear: right; */
 }
+#barre > p:last-child {
+    padding-top: 2vh;
+}
+
 
 
 #map {
@@ -31,20 +36,31 @@
     z-index: 1;         
 }
 
+
+#sac{
+    position: absolute;
+    top: 15vh;
+    right: 5vw;
+    z-index: 3;
+}
+
 #inventaire{
     position: absolute;
-    top: 11vh;
+    top: 25vh;
     right: 2vw;
     text-align: center;
     font-weight: bold;
-    background-color: orange;
+    background-color: white;
     border-radius: 5px;
     border-style: inset;
-    height: 85vh;
-    width: 20vw;
+    height: 70vh;
+    width: 19vw;
     z-index: 2;
 }
-
+#obj{
+    display: flex;
+    flex-wrap: wrap;
+}
 
 
 

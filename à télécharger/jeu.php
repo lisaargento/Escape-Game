@@ -22,14 +22,16 @@ include('php/inscription.php');
     <div id="barre">
       <p>Un tour de France</p>
       <p>le chrono</p>
-      <p><a id="sortir" href="accueil.html"><img src="img/sortir.png" style="width:90px;height:70px;"></a></p>
+      <p><a id="sortir" href="accueil.html"><img src="img/sortir.png" style="width:6wh;height:7vh;"></a></p>
     </div>
 
     
       <div id="map"></div>
 
+      <div id="sac"><img src="img/sac_inv.png" style="width:12vw;height:15vh;"></a></div>
+   
       <aside id="inventaire">
-        <p>Inventaire</p>
+        <!--<p>Inventaire</p>-->
         <div id=obj></div>
       </aside>
     
