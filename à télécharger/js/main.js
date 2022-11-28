@@ -33,9 +33,9 @@ map.setView(positionDepart, 15);
 let $id =  1;
 let $code = 0;
 
-paramObjet($id, $code);
-
-
+let $objet = paramObjet($id, $code);
+console.log($objet);
+//affichageObjet($objet);
 
 
 // FONCTIONS UTILES
@@ -48,7 +48,7 @@ function paramObjet(id , code) {
     .then(result => result.json())
     .then(Objetjson => {
         console.log(Objetjson[0]);
-        affichageObjet(Objetjson[0]);
+        return Objetjson[0];
     })
 }
 
