@@ -74,11 +74,14 @@ function affichageObjet(objet) {
     });
     // affichage du marker et du popup lorsqu'il y a un indice
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
-    
-    if (objet['indice'] != NULL) {
+
+    if (objet['type'] == 3) {
+        // création du formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code
+    }
+
+    if (objet['indice'] != NULL && objet['type'] != 3) {
         marker.bindPopup(objet['indice']);
     }
-    
     
     // Apparition selon le zoom
     map.on('zoomend', function(){
@@ -92,10 +95,9 @@ function affichageObjet(objet) {
 
 
     // ENVOIE VERS LE TRAITEMENT APPROPRIE LORS DU CLICK EN FONCTION DU TYPE DE L'OBJET
-    $type = objet['type'];
 
-    if ($type == 1 && objet['idSolution'] != NULL) {
-        marker.addEventListener('click', traitementCode(objet, marker));
+    if (objet['type'] == 2) {
+        marker.addEventListener('click', traitementRecup(objet, marker));
     }
 
     if ($type == 2) {
@@ -110,16 +112,16 @@ function affichageObjet(objet) {
         marker.addEventListener('click', traitementBloqueRecup(objet, marker));
     }
 
-}
-
-
-
-
-function traitementCode(objet, marker) {
-    idSolution = objet['idSolution'];
-    paramObjet(idSolution);
+    if (objet['idSolution'] != NULL){
+        paramObjet(idSolution);
+    }
     
+
+
 }
+
+
+
 
 function traitementRecup(objet, marker) {
     // supprimer le marker de la carte
@@ -146,5 +148,11 @@ function traitementBloqueRecup(objet, marker) {
 
 
 /*
-Comment supprimer les objets au fur et à mesure ?
+
+Comment supprimer les objets de la crate au fur et à mesure ? et ceux de l'inventaire ?
+
+
+-- pour les objets code : faire un autre affichage ? avec une image plus grande ?
+
+
 */
