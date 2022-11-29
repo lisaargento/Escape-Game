@@ -1,4 +1,5 @@
 //AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE
+//inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
 var chrono = document.getElementById('chrono');
 
 function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
@@ -24,15 +25,15 @@ function Rebours(duration, element) {
 
         secondsRemaining -= 1 ;
         if (secondsRemaining < 0) { //enregistrer le score actuel?????????????????
-                                    alert("Le temps imparti est dépassé  !");
-                                    window.open("../accueil.html");//redirige vers l'accueil
+                                    alert("Le temps imparti est dépassé ! Vous avez "+ score+" points.");
+                                    window.open("../resultats.html");//redirige vers l'accueil
                                     clearInterval(countInterval) };
     }, 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
 }
 
 window.onload = function () {
-    let nb_min = 20; // nb de minutes au départ
-    let nb_sec = 0; // nb de secondes au départ
+    let nb_min = 0; // nb de minutes au départ
+    let nb_sec = 10; // nb de secondes au départ
     let duration = nb_min * 60 + nb_sec;
 
     chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
@@ -67,8 +68,10 @@ var ListObjetsAffiches = new Array();
 
 
 
-// Initialisation de la partie : on affiche directement le premier objet
-let id =  1;
+// Initialisation de la partie : 
+var score = 0;
+//on affiche directement le premier objet
+let id = 1;
 
 paramObjet(id);
 
@@ -167,6 +170,8 @@ function objetRecuperable(objet, marker) {
     objetInventaire.src = objet['URLicone'];
     objetInventaire.style = 'width: 10vw ; height: 18vh';
     inventaire.appendChild(objetInventaire);
+
+    score += 200;//??????????????ici ça te va?
     
 }
 
@@ -191,6 +196,7 @@ function validFormObjetCode(event, objet){
             console.log('le code est ok');
             ListMarkers[id].remove();
             let idLibere = objet['idLibere'];
+            score += 100;//??????????????ici ça te va?
             if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1 ) {
                 paramObjet(idLibere);
                 ListObjetsAffiches.push(idLibere);
