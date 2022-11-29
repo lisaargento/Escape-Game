@@ -102,7 +102,7 @@ function affichageObjet(objet) {
 
     // TRAITEMENT DU CLICK
     if (objet['type'] == 2) {
-        marker.addEventListener('click', function(){ objetRecuperable(marker) });
+        marker.addEventListener('click', function(){ objetRecuperable(objet) });
     }
     else {
         marker.addEventListener('click', function(){ afficherObjetSolution(objet) });
@@ -113,12 +113,13 @@ function affichageObjet(objet) {
 
 
 // Permet de mettre un objet récupérable dans l'inventaire
-function objetRecuperable(marker) {
+function objetRecuperable(objet) {
     // supprimer le marker de la carte
     marker.remove();
 
     // mettre l'objet dans l'inventaire
-    var inventaire = document.getElementbyId(obj);
+    let inventaire = document.getElementbyId(obj);
+    inventaire.innerHTML = '<img src='+ objet['icone'] +' style="width:4vw;height:5vh;">'
     marker.setAttribute("style=width:8vw;height:10vh;", );
     inventaire.appendChild(marker);
 
@@ -178,6 +179,9 @@ comptez les points en fonction de ce qu'il y a dans l'inventaire et du temps
 
 
 -- attention aux doublons dans la liste des marqueurs
+
+
+-- reprendre tous les let et var (vérification)
 
 */
 

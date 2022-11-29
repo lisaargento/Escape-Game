@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 28 nov. 2022 à 19:04
+-- Généré le : mar. 29 nov. 2022 à 17:46
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -34,7 +34,7 @@ CREATE TABLE `jeu` (
   `latitude` float NOT NULL,
   `longitude` float NOT NULL,
   `minzoom` int(2) NOT NULL,
-  `icone` varchar(100) NOT NULL,
+  `URLicone` varchar(100) NOT NULL,
   `type` int(2) NOT NULL,
   `idSolution` int(2) DEFAULT NULL,
   `idDebloquant` int(5) DEFAULT NULL,
@@ -45,9 +45,9 @@ CREATE TABLE `jeu` (
 -- Déchargement des données de la table `jeu`
 --
 
-INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom`, `icone`, `type`, `idSolution`, `idDebloquant`, `idLibere`) VALUES
-(1, 'Vélos cassés', 'Ohhh non ! Nos vélos sont cassés ...\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/velos_casses.png', 4, 2, 4, 5),
-(2, 'Cadenas', 'Il me semble que code est la date de la création de l’Académie du Climat de Paris, Place Baudoyer, tu sais à côté de l’hôtel de ville de Paris?', 48.841, 2.58736, 19, '../img/cadenas.png', 3, 3, 2021, 4),
+INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom`, `URLicone`, `type`, `idSolution`, `idDebloquant`, `idLibere`) VALUES
+(1, 'Vélos cassés', 'Ohhh non ! Nos vélos sont cassés ...\r\n<br>\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/velos_casses.png', 4, 2, 4, 5),
+(2, 'Cadenas', 'Mince la porte de la salle est fermée ...\r\n<br>\r\nIl me semble que le code de ce cadenas est la date de la création de l’Académie du Climat de Paris ! Elle se situe Place Baudoyer à côté de l’hôtel de ville de Paris, tu vois ?', 48.841, 2.58736, 19, '../img/cadenas.png', 3, 3, 2021, 4),
 (3, 'Plaque', '', 48.8563, 2.35584, 17, '../img/plaque.jpg', 1, NULL, NULL, NULL),
 (4, 'Boite à outils', '', 48.841, 2.58736, 18, '../img/outils.png', 2, NULL, NULL, NULL),
 (5, 'Vélos réparés', '', 48.8415, 2.58786, 18, '../img/velos_repares.png', 2, NULL, NULL, 6),
