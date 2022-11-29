@@ -33,10 +33,7 @@ include('php/inscription.php');
       <aside id="inventaire">
         <!--<p>Inventaire</p>-->
         <div id=obj class="scroller">
-        <img src="img/sac_inv.png" style="width:4vw;height:5vh;">
-        <img src="img/sac_inv.png" style="width:4vw;height:5vh;">
-        <img src="img/sac_inv.png" style="width:8vw;height:10vh;">
-        <img src="img/sac_inv.png" style="width:8vw;height:10vh;">
+        <!--<img src="img/sac_inv.png" style="width:4vw;height:5vh;">-->
         </div>
       </aside>
     
