@@ -72,10 +72,6 @@ function affichageObjet(objet) {
     // affichage du marker et du popup lorsqu'il y a un indice
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
 
-    // faire condition si déjà dedans ne rien faire
-    ListMarkers.push(marker);
-    console.log(ListMarkers);
-
     if (objet['type'] == 3) {
         // création du formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
         let form = document.createElement('div');
@@ -98,6 +94,10 @@ function affichageObjet(objet) {
             marker.addTo(map);
         }
     })
+    
+    // faire condition si déjà dedans ne rien faire
+    ListMarkers.push(marker);
+    console.log(ListMarkers);
 
 
     // TRAITEMENT DU CLICK

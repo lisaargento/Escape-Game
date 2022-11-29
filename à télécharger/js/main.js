@@ -47,8 +47,7 @@ function paramObjet(id) {
     fetch('../php/main.php?id='+id)
     .then(result => result.json())
     .then(objetjson => {
-        console.table(objetjson[0]); // affichage sous forme de tableau (plus joli)
-        //console.log(objetjson[0]); // affichage normal
+        console.log(objetjson[0]);
         affichageObjet(objetjson[0]);
     })
 }
