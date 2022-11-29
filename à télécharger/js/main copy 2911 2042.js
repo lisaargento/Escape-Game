@@ -93,6 +93,11 @@ function affichageObjet(objet) {
         marker.bindPopup(objet['indice']);
     }
 
+    // Affichage direct si le zoom est correct
+    if (map.getZoom() >= objet['minzoom']) {
+        marker.addTo(map);
+    }
+
     // Apparition selon le zoom
     map.on('zoomend', function(){
         if (map.getZoom() < objet['minzoom']){
@@ -103,8 +108,6 @@ function affichageObjet(objet) {
         }
     })
 
-    // -- ne sert à R je crois
-    // faire condition si déjà dedans ne rien faire
     ListMarkers.push(marker);
     console.log(ListMarkers);
 
@@ -176,10 +179,10 @@ function validFormObjetCode(event, objet){
 
 /* .   A FAIRE
 
-Comment supprimer les objets de la crate au fur et à mesure ?
-marqueur._leaflet_id
--- Traitement de la suppression des markers ? 
-faire apparaitre l'objet libéré et supprimer l'objet actuel et sa solution
+Comment supprimer les objets de la carte au fur et à mesure ?
+Traitement de la suppression des markers ? 
+
+----------- faire apparaitre l'objet libéré et supprimer l'objet actuel et sa solution
 
 
 -- pour les objets code : faire un autre affichage ? avec une image plus grande ?
