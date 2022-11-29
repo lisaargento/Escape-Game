@@ -33,15 +33,9 @@ map.setView(positionDepart, 15);
 let $id =  1;
 paramObjet($id);
 
-/*
 
- A FAIRE
-
-conditions de vélos réparées et carte postale dans l'inventaire !!!
-3 "initalisations"
-
-*/
-
+// Tableau des différents marqueurs
+var ListMarkers = new Array();
 
 
 
@@ -53,14 +47,16 @@ function paramObjet(id) {
     fetch('../php/main.php?id='+id)
     .then(result => result.json())
     .then(objetjson => {
-        console.table(objetjson[0]);
+        //console.table(objetjson[0]);
+        console.log(objetjson[0])
         affichageObjet(objetjson[0]);
     })
 }
 
 
 
-// Affiche un objet en prenant en compte tous ses paramètres (entrée JSON) et renvoie vers le traitement approprié en fonction de son type
+// Affichage et traitement d'un objet
+// ---- fonction à optimiser 
 function affichageObjet(objet) {
 
     // AFFICHAGE DE L'OBJET
@@ -72,17 +68,31 @@ function affichageObjet(objet) {
         iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
         popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
     });
+
     // affichage du marker et du popup lorsqu'il y a un indice
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
+    ListMarkers.push(marker);
+    console.log(ListMarkers);
 
     if (objet['type'] == 3) {
-        // création du formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code
+        // création du formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
+        let textform = '<br><br> <form role="form" id="form" method="POST" onsubmit="return validFormObjetCode(event, objet);">'
+        + '<p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
+        + '<p><input type="submit" name="ok" value="vérifier" id="ok"></p>'
+        + '</form>';
+        // ajouter l'indice dans la balise form
+
+        let form = document.createElement('div');
+        form.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
+        + '<p><input type="submit" name="ok" value="vérifier" id="ok"></p> </form>';
+        form.addEventListener('submit',function(event){ validFormObjetCode(event, objet); })
+        marker.bindPopup(form);
     }
 
-    if (objet['indice'] != NULL && objet['type'] != 3) {
+    if (objet['indice'] != '' && objet['type'] != 3) {
         marker.bindPopup(objet['indice']);
     }
-    
+
     // Apparition selon le zoom
     map.on('zoomend', function(){
         if (map.getZoom() < objet['minzoom']){
@@ -94,65 +104,99 @@ function affichageObjet(objet) {
     })
 
 
-    // ENVOIE VERS LE TRAITEMENT APPROPRIE LORS DU CLICK EN FONCTION DU TYPE DE L'OBJET
+    // TRAITEMENT DU CLICK
+    /*
+    marker.addEventListener('click', function(event, objet) {
+        if (objet['type'] == 2) {
+            objetRecuperable(marker);
+        }
+        else {
+            afficherObjetSolution(objet);
+        }
+    })
+*/
 
     if (objet['type'] == 2) {
-        marker.addEventListener('click', traitementRecup(objet, marker));
+        marker.addEventListener('click', function(){ objetRecuperable(marker) });
     }
-
-    if ($type == 2) {
-        marker.addEventListener('click', traitementRecup(objet, marker));
+    else {
+        marker.addEventListener('click', function(){ afficherObjetSolution(objet) });
     }
-
-    if ($type == 3) {
-        marker.addEventListener('click', traitementBloqueCode(objet, marker));
-    }
-
-    if ($type == 4) {
-        marker.addEventListener('click', traitementBloqueRecup(objet, marker));
-    }
-
-    if (objet['idSolution'] != NULL){
-        paramObjet(idSolution);
-    }
-    
-
 
 }
 
 
 
 
-function traitementRecup(objet, marker) {
+// Permet de mettre un objet récupérable dans l'inventaire
+function objetRecuperable(marker) {
     // supprimer le marker de la carte
     marker.remove();
 
     // mettre l'objet dans l'inventaire
-    
-    // cf Lisa <3
-
+    var inventaire = document.getElementbyId(obj);
+    marker.setAttribute("style=width:15vw;height:18vh;", );
+    inventaire.appendChild(marker);
 }
 
 
-function traitementBloqueCode(objet, marker) {
-
-
-
+// Permet d'afficher l'objet solution de l'objet considéré
+function afficherObjetSolution(objet) {
+    if (objet['idSolution'] != null){
+        paramObjet(objet['idSolution']);
+    }
+    /*
+    else {
+        console.log("objet ne débloquant aucun objet");
+    }
+    */
 }
 
-function traitementBloqueRecup(objet, marker) {
-    
+
+// Validation du formulaire d'un objet bloqué par un code
+function validFormObjetCode(event, objet){
+        event.preventDefault();
+        let $id = objet['id'];
+        var code = document.getElementById("code").value;
+        if (code == objet['idDebloquant']){
+            console.log('le code est ok');
+            ListMarkers[$id].remove();
+            let $idLibere = objet['idLibere'];
+            if ($idLibere != '') {
+                paramObjet($idLibere);
+            }
+        }
+        else {
+            alert("Le code n'est pas correct ...");
+        }
 }
 
 
 
 
-/*
 
-Comment supprimer les objets de la crate au fur et à mesure ? et ceux de l'inventaire ?
+
+/* .   A FAIRE
+
+Comment supprimer les objets de la crate au fur et à mesure ?
+marqueur._leaflet_id
+-- Traitement de la suppression des markers ? 
+faire apparaitre l'objet libéré et supprimer l'objet actuel et sa solution
 
 
 -- pour les objets code : faire un autre affichage ? avec une image plus grande ?
 
 
+comptez les points en fonction de ce qu'il y a dans l'inventaire et du temps
+
+
+-- ajouter objet solution de objet récupérable s'il existe
+
+
+-- voir ZOOM (exemple cadenas)
+
+
+-- attention aux doublons dans la liste des marqueurs
+
 */
+
