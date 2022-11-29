@@ -131,7 +131,7 @@ function traitementRecup(objet, marker) {
     // mettre l'objet dans l'inventaire
 /*
 function mettre_inventaire(marker){
-    marker.setAttribute("style=width:15vw;height:18vh;", );
+    marker.setAttribute("style=width:8vw;height:10vh;", );
     inventaire.appendChild(marker)
     }
 */
