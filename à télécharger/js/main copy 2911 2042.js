@@ -1,44 +1,14 @@
-//AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE
-var chrono = document.getElementById('chrono');
+//  !!!!! A FAIRE !!!! Gestion du temps de la partie
 
-function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
-    return num < 10 ? "0" + num : num; 
-}
+/*
+let today = new Date();
+today.getTime(); // le timestamp actuel
 
-function Rebours(duration, element) {
-
-    let secondsRemaining = duration;
-    let min = 0;
-    let sec = 0;
-
-    let countInterval = setInterval(function () {
-
-        min = parseInt(secondsRemaining / 60);
-        sec = parseInt(secondsRemaining % 60);
-
-        element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-        if(secondsRemaining<=60){
-            chrono.style.color = 'red';
-        }
+Date.now() // le timestamp actuel (méthode statique)
+console.log(Date);
+*/
 
 
-        secondsRemaining -= 1 ;
-        if (secondsRemaining < 0) { //enregistrer le score actuel?????????????????
-                                    alert("Le temps imparti est dépassé  !");
-                                    window.open("../accueil.html");//redirige vers l'accueil
-                                    clearInterval(countInterval) };
-    }, 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
-}
-
-window.onload = function () {
-    let nb_min = 20; // nb de minutes au départ
-    let nb_sec = 0; // nb de secondes au départ
-    let duration = nb_min * 60 + nb_sec;
-
-    chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
-
-    Rebours(--duration, chrono);
-};
 
 // AFFICHAGE DE LA CARTE
 var map = L.map('map');
