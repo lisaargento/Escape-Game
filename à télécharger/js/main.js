@@ -165,6 +165,7 @@ function affichageObjet(objet) {
 // Permet de mettre un objet récupérable dans l'inventaire
 function objetRecuperable(objet, marker) {
     // supprimer le marker de la carte
+    marker.remove();
     map.on('zoomend', function(){
         marker.remove();
     });
