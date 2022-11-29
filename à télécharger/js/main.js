@@ -1,5 +1,7 @@
-//AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE
-//inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
+// ------------- AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE ------------- //
+
+// Inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
+
 var chrono = document.getElementById('chrono');
 
 function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
@@ -24,16 +26,18 @@ function Rebours(duration, element) {
 
 
         secondsRemaining -= 1 ;
-        if (secondsRemaining < 0) { //enregistrer le score actuel?????????????????
-                                    alert("Le temps imparti est dépassé ! Vous avez "+ score+" points.");
-                                    window.open("../resultats.html");//redirige vers l'accueil
-                                    clearInterval(countInterval) };
-    }, 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
+        if (secondsRemaining < 0) {
+            //enregistrer le score actuel?????????????????
+            alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
+            window.open('../resultats.html'); //redirige vers l'accueil
+            clearInterval(countInterval)
+        };
+    } , 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
 }
 
 window.onload = function () {
     let nb_min = 0; // nb de minutes au départ
-    let nb_sec = 10; // nb de secondes au départ
+    let nb_sec = 3; // nb de secondes au départ
     let duration = nb_min * 60 + nb_sec;
 
     chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
@@ -45,7 +49,14 @@ window.onload = function () {
 
 
 
-// AFFICHAGE DE LA CARTE
+
+
+
+
+
+
+//  ------------- AFFICHAGE DE LA CARTE ------------- //
+
 var map = L.map('map');
 
 var maxZoomMap = 19;
@@ -54,40 +65,46 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
-
-// POSITION DE DEPART DU JEU
+// position de départ du jeu
 var positionDepart = [48.841470, 2.587863];
 map.setView(positionDepart, 15);
 
 
 
-// DEROULEMENT DE LA PARTIE
+
+
+
+
+
+
+
+
+
+
+//  ------------- DEROULEMENT DE LA PARTIE ------------- //
 
 // Tableau des différents marqueurs
 var ListMarkers = new Array();
 
-// Tableau des objets qui ont été affichés
+// Tableau des objets qui ont été affichés (vide au départ, il se remplit au fur et à mesure)
 var ListObjetsAffiches = new Array();
 
 
+// Initialisation de la partie
 
-// Initialisation de la partie : 
-var score = 0;
+var score = 0; // score initial
 
-//on affiche directement le premier objet
-let id = 1;
+let id = 1; // id du premier objet affiché
 
-paramObjet(id);
+paramObjet(id); // requête pour obtenir tous les paramètres de cet objet et le traiter
 
-ListObjetsAffiches.push(id);
-console.log(ListObjetsAffiches);
-
+ListObjetsAffiches.push(id); // ajout de l'id du premier objet à la liste des objets qui ont été affichés
+console.log(ListObjetsAffiches); // test de vérification
 
 
 
+// ------ FONCTIONS UTILES ------ //
 
-// FONCTIONS UTILES
 
 // Récupère toutes les informations d'un objet en fonction de son id sous format JSON et appelle la fonction affichageObjet
 function paramObjet(id) {
@@ -102,7 +119,7 @@ function paramObjet(id) {
 
 
 // Affichage et traitement d'un objet
-// ---- fonction à optimiser 
+
 function affichageObjet(objet) {
 
     // AFFICHAGE DE L'OBJET

@@ -1,16 +1,62 @@
-//  !!!!! A FAIRE !!!! Gestion du temps de la partie
+// ------------- AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE ------------- //
 
-/*
-let today = new Date();
-today.getTime(); // le timestamp actuel
+// Inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
 
-Date.now() // le timestamp actuel (méthode statique)
-console.log(Date);
-*/
+var chrono = document.getElementById('chrono');
+
+function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
+    return num < 10 ? "0" + num : num; 
+}
+
+function Rebours(duration, element) {
+
+    let secondsRemaining = duration;
+    let min = 0;
+    let sec = 0;
+
+    let countInterval = setInterval(function () {
+
+        min = parseInt(secondsRemaining / 60);
+        sec = parseInt(secondsRemaining % 60);
+
+        element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+        if(secondsRemaining<=60){
+            chrono.style.color = 'red';
+        }
+
+
+        secondsRemaining -= 1 ;
+        if (secondsRemaining < 0) {
+            //enregistrer le score actuel?????????????????
+            alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
+            window.open('../resultats.html'); //redirige vers l'accueil
+            clearInterval(countInterval)
+        };
+    } , 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
+}
+
+window.onload = function () {
+    let nb_min = 0; // nb de minutes au départ
+    let nb_sec = 3; // nb de secondes au départ
+    let duration = nb_min * 60 + nb_sec;
+
+    chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
+
+    Rebours(--duration, chrono);
+};
 
 
 
-// AFFICHAGE DE LA CARTE
+
+
+
+
+
+
+
+
+//  ------------- AFFICHAGE DE LA CARTE ------------- //
+
 var map = L.map('map');
 
 var maxZoomMap = 19;
@@ -19,37 +65,46 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-
-
-// POSITION DE DEPART DU JEU
+// position de départ du jeu
 var positionDepart = [48.841470, 2.587863];
 map.setView(positionDepart, 15);
 
 
 
-// DEROULEMENT DE LA PARTIE
+
+
+
+
+
+
+
+
+
+
+//  ------------- DEROULEMENT DE LA PARTIE ------------- //
 
 // Tableau des différents marqueurs
 var ListMarkers = new Array();
 
-// Tableau des objets qui ont été affichés
+// Tableau des objets qui ont été affichés (vide au départ, il se remplit au fur et à mesure)
 var ListObjetsAffiches = new Array();
 
 
+// Initialisation de la partie
 
-// Initialisation de la partie : on affiche directement le premier objet
-let id =  1;
+var score = 0; // score initial
 
-paramObjet(id);
+let id = 1; // id du premier objet affiché
 
-ListObjetsAffiches.push(id);
-console.log(ListObjetsAffiches);
+paramObjet(id); // requête pour obtenir tous les paramètres de cet objet et le traiter
 
-
-
+ListObjetsAffiches.push(id); // ajout de l'id du premier objet à la liste des objets qui ont été affichés
+console.log(ListObjetsAffiches); // test de vérification
 
 
-// FONCTIONS UTILES
+
+// ------ FONCTIONS UTILES ------ //
+
 
 // Récupère toutes les informations d'un objet en fonction de son id sous format JSON et appelle la fonction affichageObjet
 function paramObjet(id) {
@@ -64,7 +119,7 @@ function paramObjet(id) {
 
 
 // Affichage et traitement d'un objet
-// ---- fonction à optimiser 
+
 function affichageObjet(objet) {
 
     // AFFICHAGE DE L'OBJET
@@ -127,6 +182,7 @@ function affichageObjet(objet) {
 // Permet de mettre un objet récupérable dans l'inventaire
 function objetRecuperable(objet, marker) {
     // supprimer le marker de la carte
+    marker.remove();
     map.on('zoomend', function(){
         marker.remove();
     });
@@ -137,6 +193,8 @@ function objetRecuperable(objet, marker) {
     objetInventaire.src = objet['URLicone'];
     objetInventaire.style = 'width: 10vw ; height: 18vh';
     inventaire.appendChild(objetInventaire);
+
+    score += 200;//??????????????ici ça te va?
     
 }
 
@@ -161,6 +219,7 @@ function validFormObjetCode(event, objet){
             console.log('le code est ok');
             ListMarkers[id].remove();
             let idLibere = objet['idLibere'];
+            score += 100;//??????????????ici ça te va?
             if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1 ) {
                 paramObjet(idLibere);
                 ListObjetsAffiches.push(idLibere);
