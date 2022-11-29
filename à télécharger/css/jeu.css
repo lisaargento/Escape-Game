@@ -79,24 +79,4 @@
         width: 100%;
         font-size: 1em;
   }*/
-
-  var chrono = document.getElementById('chrono');
-
-/*
-  function loopheure () {
-      var today = new Date().toLocaleTimeString('fr');
-      heure.innerText = today;
-      if(today.substring(7,8)==0){
-          heure.style.color= 'red';
-      }else{
-          heure.style.color= 'black';
-      }
-      setTimeout(loopheure, 1000);
-    }
-    loopheure();
   
-    heure.addEventListener("click", function(){
-        console.log("L'événement click a été déclenché");
-        //heure.innerText = " Il est "+today+" heures.";
-    });
-    */

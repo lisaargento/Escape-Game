@@ -1,14 +1,45 @@
-//  !!!!! A FAIRE !!!! Gestion du temps de la partie
+//AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE
+//inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
+var chrono = document.getElementById('chrono');
 
-/*
-let today = new Date();
-today.getTime(); // le timestamp actuel
+function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
+    return num < 10 ? "0" + num : num; 
+}
 
-Date.now() // le timestamp actuel (méthode statique)
-console.log(Date);
-*/
+function Rebours(duration, element) {
+
+    let secondsRemaining = duration;
+    let min = 0;
+    let sec = 0;
+
+    let countInterval = setInterval(function () {
+
+        min = parseInt(secondsRemaining / 60);
+        sec = parseInt(secondsRemaining % 60);
+
+        element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
+        if(secondsRemaining<=60){
+            chrono.style.color = 'red';
+        }
 
 
+        secondsRemaining -= 1 ;
+        if (secondsRemaining < 0) { //enregistrer le score actuel?????????????????
+                                    alert("Le temps imparti est dépassé ! Vous avez "+ score+" points.");
+                                    window.open("../resultats.html");//redirige vers l'accueil
+                                    clearInterval(countInterval) };
+    }, 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
+}
+
+window.onload = function () {
+    let nb_min = 0; // nb de minutes au départ
+    let nb_sec = 10; // nb de secondes au départ
+    let duration = nb_min * 60 + nb_sec;
+
+    chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
+
+    Rebours(--duration, chrono);
+};
 
 // AFFICHAGE DE LA CARTE
 var map = L.map('map');
@@ -37,8 +68,10 @@ var ListObjetsAffiches = new Array();
 
 
 
-// Initialisation de la partie : on affiche directement le premier objet
-let id =  1;
+// Initialisation de la partie : 
+var score = 0;
+//on affiche directement le premier objet
+let id = 1;
 
 paramObjet(id);
 
@@ -137,6 +170,8 @@ function objetRecuperable(objet, marker) {
     objetInventaire.src = objet['URLicone'];
     objetInventaire.style = 'width: 10vw ; height: 18vh';
     inventaire.appendChild(objetInventaire);
+
+    score += 200;//??????????????ici ça te va?
     
 }
 
@@ -161,6 +196,7 @@ function validFormObjetCode(event, objet){
             console.log('le code est ok');
             ListMarkers[id].remove();
             let idLibere = objet['idLibere'];
+            score += 100;//??????????????ici ça te va?
             if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1 ) {
                 paramObjet(idLibere);
                 ListObjetsAffiches.push(idLibere);
