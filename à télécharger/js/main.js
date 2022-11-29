@@ -41,6 +41,10 @@ window.onload = function () {
     Rebours(--duration, chrono);
 };
 
+
+
+
+
 // AFFICHAGE DE LA CARTE
 var map = L.map('map');
 
@@ -70,6 +74,7 @@ var ListObjetsAffiches = new Array();
 
 // Initialisation de la partie : 
 var score = 0;
+
 //on affiche directement le premier objet
 let id = 1;
 
