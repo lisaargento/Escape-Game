@@ -31,7 +31,7 @@
 
 
 #map {
-    height: 91vh;
+    height: 90vh;
     flex-basis: 80vw;
     z-index: 1;         
 }
@@ -39,8 +39,8 @@
 
 #sac{
     position: absolute;
-    top: 15vh;
-    right: 5vw;
+    top: 13vh;
+    right: 4vw;
     z-index: 3;
 }
 
@@ -54,13 +54,22 @@
     border-radius: 5px;
     border-style: inset;
     height: 70vh;
-    width: 19vw;
+    width: 18vw;
     z-index: 2;
+    overflow-y: scroll;
+    scrollbar-width: thin;
 }
+
 #obj{
+    overflow-y: auto;
+    align-items: center;
+    padding-top: 7vh;
     display: flex;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
+    grid-row-gap: 2vh; 
 }
+
+
 
 
 
@@ -71,3 +80,23 @@
         font-size: 1em;
   }*/
 
+  var chrono = document.getElementById('chrono');
+
+/*
+  function loopheure () {
+      var today = new Date().toLocaleTimeString('fr');
+      heure.innerText = today;
+      if(today.substring(7,8)==0){
+          heure.style.color= 'red';
+      }else{
+          heure.style.color= 'black';
+      }
+      setTimeout(loopheure, 1000);
+    }
+    loopheure();
+  
+    heure.addEventListener("click", function(){
+        console.log("L'événement click a été déclenché");
+        //heure.innerText = " Il est "+today+" heures.";
+    });
+    */
