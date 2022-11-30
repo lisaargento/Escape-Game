@@ -276,43 +276,12 @@ function click(objet, marker) {
 }
 
 
-
-
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-/* .   A FAIRE
-
-Comment supprimer les objets de la carte au fur et à mesure ?
-Traitement de la suppression des markers ? 
-
------------ faire apparaitre l'objet libéré et supprimer l'objet actuel et sa solution
-
-
--- pour les objets code : faire un autre affichage ? avec une image plus grande ?
-
-
-comptez les points en fonction de ce qu'il y a dans l'inventaire et du temps
-
-
--- ajouter objet solution de objet récupérable s'il existe
-
-
--- reprendre tous les let et var (vérification)
-
-*/
-
-
-
-
-
-
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 /*
+
+- revoir code du compte à rebour
 
 - faire les suppressions
 
@@ -330,6 +299,12 @@ comptez les points en fonction de ce qu'il y a dans l'inventaire et du temps
 BONUS :
 
 - objet code : mettre un popup sous forme d'image ?
+
+- retirer des points si mauvais code ?
+
+- ajouter de points si objet dans l'inventaire ok MAIS PRENDRE AUSSI EN COMPTE LE TEMPS ?
+
+- reprendre tous les let et les var (pour vérification de la portée de chacun)
 
 
 */
