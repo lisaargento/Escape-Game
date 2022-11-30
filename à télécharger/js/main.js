@@ -32,8 +32,8 @@ function Rebours(duration, element) {
 }
 
 window.onload = function () {
-    let nb_min = 0; // nb de minutes au départ
-    let nb_sec = 10; // nb de secondes au départ
+    let nb_min = 2; // nb de minutes au départ
+    let nb_sec = 0; // nb de secondes au départ
     let duration = nb_min * 60 + nb_sec;
 
     chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;

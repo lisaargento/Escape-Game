@@ -48,11 +48,11 @@ CREATE TABLE `jeu` (
 INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom`, `URLicone`, `type`, `idSolution`, `idDebloquant`, `idLibere`) VALUES
 (1, 'Vélos cassés', 'Ohhh non ! Nos vélos sont cassés ...\r\n<br>\r\nMais il me semble que les ENSGagés ont mis à disposition des outils qui pourraient nous servir ;) ', 48.8415, 2.58786, 18, '../img/velos_casses.png', 4, 2, 4, 5),
 (2, 'Cadenas', 'Mince la porte de la salle est fermée ...\r\n<br>\r\nIl me semble que le code de ce cadenas est la date de la création de l’Académie du Climat de Paris ! Elle se situe Place Baudoyer à côté de l’hôtel de ville de Paris, tu vois ?', 48.841, 2.58736, 19, '../img/cadenas.png', 3, 3, 2021, 4),
-(3, 'Plaque', '', 48.8563, 2.35584, 17, '../img/plaque.jpg', 1, NULL, NULL, NULL),
+(3, 'Plaque', "L'Académie du Climat c'est un lieu pour s'informer, se former, échanger et agir!\r\n<br>\r\Elle regroupe les locaux de plusieurs associations engagées et accueille des ateliers, des conférences/débats, des projections, des expositions... mais aussi des classes et des groupes pour les accompagner de la sensibilisation à l'engagement.", 48.8563, 2.35584, 17, '../img/plaque.jpg', 1, NULL, NULL, NULL),
 (4, 'Boite à outils', '', 48.841, 2.58736, 18, '../img/outils.png', 2, NULL, NULL, NULL),
 (5, 'Vélos réparés', '', 48.8415, 2.58786, 18, '../img/velos_repares.png', 2, NULL, NULL, 6),
 (6, 'Places', 'J’avais prévu qu’on aille voir la plus grande fierté des Montois avant de commencer le tour de Bretagne. \r\n(place bloqué par deux objets, les deux photos)', 48.2766, -3.55418, 16, '../img/place.png', 3, 7, 5712, 9),
-(7, 'Mont Saint Michel', '', 48.6358, -1.51194, 16, '../img/photo_mont.jpg', 1, 8, NULL, NULL),
+(7, 'Mont Saint Michel', "Cet îlot rocheux consacré à saint Michel est une étape des Chemins de Saint-Jacques-de-Compostelle. Il figure, avec sa baie, sur la liste du patrimoine mondiale de l'UNESCO depuis 1979. A l'origine nommé Mont Tombe, il y ait érigé un oratoire en l'honneur de l'archange saint Michel en 708 qui lui donnera plus tard l'appelation qu'on lui connait aujourd'hui.", 48.6358, -1.51194, 16, '../img/photo_mont.jpg', 1, 8, NULL, NULL),
 (8, 'Dinan', '', 48.4572, -2.03774, 16, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL),
 (9, 'Carte postale', '', 48.2766, -3.55418, 16, '../img/carte_postale.png', 2, NULL, NULL, NULL);
 
