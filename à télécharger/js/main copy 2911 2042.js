@@ -210,6 +210,19 @@ function afficherObjetSolution(objet) {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Validation du formulaire d'un objet bloqué par un code
 function validFormObjetCode(event, objet){
         event.preventDefault();
