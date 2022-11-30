@@ -143,25 +143,13 @@ function TaitrementObjet(objet) {
     // Définition du marker
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
 
-    // Définition du popup en fonction de son type
-// ??? peut-etre mettre condition direct si type == 1 ou 2 pour ne rien créer ???
-    var popup = ContenuPopup(objet, typeObjet);
-    marker.bindPopup(popup);
-
-    // Affichage direct si le zoom est correct
-    if (map.getZoom() >= objet['minzoom']) {
-        marker.addTo(map);
+    // Définition du popup en fonction du type de l'objet
+    if ( typeObjet != 1 && typeObjet != 2 ) {
+        marker.bindPopup(ContenuPopup(objet, typeObjet));
     }
     
-    // Apparition selon le zoom par la suite dans tous les cas
-    map.on('zoomend', function(){
-        if (map.getZoom() < objet['minzoom']){
-            marker.remove();
-        }
-        else {
-            marker.addTo(map);
-        }
-    })
+    // Affichage du marker de l'objet en fonction du zoom
+    AffichageMarkerZoom(objet, marker);
     
     // Test et contrôle : mise à jour des marker crées
     ListMarkers.push(marker);
@@ -181,8 +169,7 @@ function CreerIcone(objet, typeObjet) {
         var img = L.icon({
             iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [200, 200], // taille de l'icone
-            iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
-            popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
+            iconAnchor:   [100, 100], // point de l'icone qui correspondra à la position du marker
         });
     }
     else {
@@ -199,14 +186,14 @@ function CreerIcone(objet, typeObjet) {
 
 // Définit le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
-    if (typeObjet == 3) {
+    if ( typeObjet == 3 ) {
         // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
         var popup = document.createElement('div');
         popup.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
         + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
-    if (typeObjet == 4) {
+    if ( typeObjet == 4 ) {
         var popup = objet['indice'];
     }
     return popup;
@@ -218,6 +205,7 @@ function ValidFormObjetCode(event, objet){
     event.preventDefault(); // on empêche l'envoi du formulaire pour que la page ne se recharge pas
 
     var code = document.getElementById('code').value; // on récupère la valeur entrée dans le formulaire à la validation
+    
     if (code == objet['idDebloquant']){
         score += 100; // on ajoute des points lorsque le code est trouvé
         console.log('Le code est ok !');
@@ -228,12 +216,45 @@ function ValidFormObjetCode(event, objet){
             AfficherObjet(idLibere);
 
             // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
+            for (i = objet['id']; i < idLibere; i++) {
+                deleteMarker(i);
+            }
         }
     }
     else {
         alert("Le code n'est pas correct ...");
     }
 }
+
+// Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
+function AffichageMarkerZoom(objet, marker) {
+
+     // Affichage direct si le zoom est correct
+     if (map.getZoom() >= objet['minzoom']) {
+        marker.addTo(map);
+    }
+    
+    // Apparition selon le zoom par la suite dans tous les cas
+    map.on('zoomend', function(){
+        if (map.getZoom() < objet['minzoom']){
+            marker.remove();
+        }
+        else {
+            marker.addTo(map);
+        }
+    })
+
+}
+
+
+// supprimer le marker de la carte peu importe le zoom
+function deleteMarker(id) {
+    ListMarkers[id-1].remove();
+    map.on('zoomend', function(){
+        ListMarkers[id-1].remove();
+    });
+}
+
 
 // Actions d'un click en fonction des paramètres de l'objets
 function click(objet, marker) {
@@ -251,10 +272,7 @@ function click(objet, marker) {
         score += 200; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
 
         // supprimer le marker de la carte
-        marker.remove();
-        map.on('zoomend', function(){
-            marker.remove();
-        });
+        deleteMarker(objet['id']);
 
         // mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
@@ -266,11 +284,13 @@ function click(objet, marker) {
 
     // Objet bloqué par un autre objet
     if ( type == 4 && ListObjetsAffiches.indexOf(idSolution) == -1) {
-        // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
-        // if (objet d'ibDebloquant dans l'inventaire) {}
         AfficherObjet(idSolution);
 
+        // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
+        // if (objet d'ibDebloquant dans l'inventaire) {}
+
         // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
+            
     }
 
 }
