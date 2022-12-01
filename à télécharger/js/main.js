@@ -53,8 +53,6 @@ window.onload = function () {
 
 
 
-
-
 //  ------------- AFFICHAGE DE LA CARTE ------------- //
 
 var map = L.map('map');
@@ -77,10 +75,6 @@ map.setView(positionDepart, 15);
 
 
 
-
-
-
-
 //  ------------- DEROULEMENT DE LA PARTIE ------------- //
 
 
@@ -94,10 +88,9 @@ var ListObjetsAffiches = new Array();
 // Initialisation de la partie
 
 var score = 0; // score initial
-
 let id = 1; // id du premier objet affiché
 
-AfficherObjet(id); // affichage du premier objet dont id = 1
+AfficherObjet(id); // affichage du premier objet id = 1
 /* -------- si c'est faux la ligne d'avant
 paramObjet(id); // requête pour obtenir tous les paramètres de cet objet et le traiter
 ListObjetsAffiches.push(id); // ajout de l'id du premier objet à la liste des objets qui ont été affichés
@@ -229,7 +222,7 @@ function ValidFormObjetCode(event, objet){
 function AffichageMarkerZoom(objet, marker) {
     var minzoom = objet['minzoom'];
 
-     // Affichage direct si le zoom est correct
+    // Affichage direct si le zoom est correct
      if (map.getZoom() >= minzoom) {
         marker.addTo(map);
     }
@@ -246,7 +239,7 @@ function AffichageMarkerZoom(objet, marker) {
 }
 
 
-// supprimer le marker de la carte peu importe le zoom
+// supprimer le marker de la carte peu importe le zoom???????????définitivement ??
 function deleteMarker(id) {
     ListMarkers[id-1].remove();
     map.on('zoomend', function(){
@@ -281,9 +274,14 @@ function click(objet) {
         var inventaire = document.getElementById('obj');
         var objetInventaire = document.createElement('img');
         objetInventaire.src = objet['URLicone'];
-        objetInventaire.style = 'width: 10vw ; height: 18vh';
+        objetInventaire.style = 'width: 11vw ; height: 17vh';
         inventaire.appendChild(objetInventaire);
-        score += 200; //????????????????????????
+        
+
+        // utiliser objet (cliquer dessus pour l'utiliser)
+        //objetInventaire.addEventListener("click", myScript);  
+
+        //sauf crêpe -> si va dans l'inventaire = fin du jeu
     }
 
     // Objet bloqué par un autre objet
