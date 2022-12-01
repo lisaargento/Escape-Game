@@ -147,7 +147,7 @@ function TraitementObjet(objet) {
     console.log(ListMarkers);
 
     // Actions du click en fonction des paramètres de l'objet considéré
-    marker.addEventListener('click', function() { click(objet, marker) } );
+    marker.addEventListener( 'click', function() { click(objet, marker) } );
 
 }
 
@@ -275,9 +275,19 @@ function click(objet) {
         var objetInventaire = document.createElement('input');
         objetInventaire.type = 'image';
         objetInventaire.src = objet['URLicone'];
-        objetInventaire.style = 'width: 11vw ; height: 17vh';
-        objetInventaire.onclick = '';
+        objetInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red;';
         inventaire.appendChild(objetInventaire);
+        
+        var clickType = 0;
+        objetInventaire.addEventListener( 'click', function(){clickInventaire(objetInventaire, clickType);} );
+
+
+        // utiliser objet (cliquer dessus pour l'utiliser)
+        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
+        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
+
+
+        //sauf crêpe -> si va dans l'inventaire = fin du jeu
 
 
 
@@ -293,10 +303,6 @@ function click(objet) {
         
         
 
-        // utiliser objet (cliquer dessus pour l'utiliser)
-
-
-        //sauf crêpe -> si va dans l'inventaire = fin du jeu
     }
 
     // Objet bloqué par un autre objet
@@ -316,6 +322,29 @@ function click(objet) {
     }
 
 }
+
+
+
+
+
+function clickInventaire(objetInventaire, clickType){
+    if ( clickType % 2 == 0 ) {
+        objetInventaire.style = 'width: 11vw; height: 17vh; border: 2px; borderColor: red;';
+    }
+    else {
+        objetInventaire.style = 'width: 11vw; height: 17vh; border: 0px; borderColor: black;';
+    }
+    clickType += 1;
+    console.log(clickType);
+}
+
+
+
+
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
