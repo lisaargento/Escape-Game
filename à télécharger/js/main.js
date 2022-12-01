@@ -90,12 +90,10 @@ var ListObjetsAffiches = new Array();
 var score = 0; // score initial
 let id = 1; // id du premier objet affiché
 
-AfficherObjet(id); // affichage du premier objet id = 1
-/* -------- si c'est faux la ligne d'avant
-paramObjet(id); // requête pour obtenir tous les paramètres de cet objet et le traiter
-ListObjetsAffiches.push(id); // ajout de l'id du premier objet à la liste des objets qui ont été affichés
-console.log(ListObjetsAffiches); // test de vérification
-*/
+AfficherObjet(id);
+
+
+
 
 
 
@@ -138,7 +136,6 @@ function TraitementObjet(objet) {
 
     // Définition du popup en fonction du type de l'objet
     if ( objet['indice'] != '' ) {
-        console.log(objet['indice']);
         marker.bindPopup(ContenuPopup(objet, typeObjet));
     }
     
@@ -273,18 +270,26 @@ function click(objet) {
         // supprimer le marker de la carte
         deleteMarker(id);
 
-        // mettre l'objet dans l'inventaire
+        // Mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
-        var objetInventaire = document.createElement('img');
+        var objetInventaire = document.createElement('input');
+        objetInventaire.type = 'image';
         objetInventaire.src = objet['URLicone'];
         objetInventaire.style = 'width: 11vw ; height: 17vh';
+        objetInventaire.onclick = '';
         inventaire.appendChild(objetInventaire);
 
+
+
+        //  <input type="file" accept="image/*">
+
         // jouer audio indice
+        /*
         let i = 0;        
         var audio = new Audio('son{i}.mp3');
         audio.play();
         i += 1
+        */
         
 
         // utiliser objet (cliquer dessus pour l'utiliser)
