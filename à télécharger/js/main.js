@@ -275,7 +275,7 @@ function click(objet) {
         var objetInventaire = document.createElement('input');
         objetInventaire.type = 'image';
         objetInventaire.src = objet['URLicone'];
-        objetInventaire.style = 'width: 11vw; height: 17vh; border: 2px; borderColor: black;';
+        objetInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red;';
         inventaire.appendChild(objetInventaire);
         
         var clickType = 0;
