@@ -299,6 +299,10 @@ function click(objet) {
         */
         
 
+        // utiliser objet (cliquer dessus pour l'utiliser)
+        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
+        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
+
 
     }
 
@@ -314,7 +318,7 @@ function click(objet) {
         // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
         // if (objet d'ibDebloquant dans l'inventaire) {}
 
-        // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
+        // Suppression des markers des objets donc les id sont dans l'intervalle [ id ; idLibere[
             
     }
 
