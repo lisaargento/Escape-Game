@@ -32,7 +32,7 @@ function Rebours(duration, element) {
 }
 
 window.onload = function () {
-    let nb_min = 2; // nb de minutes au départ
+    let nb_min = 5; // nb de minutes au départ
     let nb_sec = 0; // nb de secondes au départ
     let duration = nb_min * 60 + nb_sec;
 
@@ -109,7 +109,7 @@ function affichageObjet(objet) {
 
     // définition de l'icon
     var img = L.icon({
-        iconUrl: objet['URLicone'], // lien de l'image !!!!! entre guillement vérifier la sortie JSON !!!!!!
+        iconUrl: objet['URLicone'], // lien de l'image !!!!! entre guillement vérifier la sortie JSON !!!!!! c'est réglé non?
         iconSize:     [50, 50], // taille de l'icone
         iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
         popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
