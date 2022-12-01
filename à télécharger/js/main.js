@@ -279,7 +279,9 @@ function click(objet) {
         
 
         // utiliser objet (cliquer dessus pour l'utiliser)
-        //objetInventaire.addEventListener("click", myScript);  
+        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
+        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
+
 
         //sauf crêpe -> si va dans l'inventaire = fin du jeu
     }
