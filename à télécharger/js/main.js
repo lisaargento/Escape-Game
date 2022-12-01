@@ -90,12 +90,10 @@ var ListObjetsAffiches = new Array();
 var score = 0; // score initial
 let id = 1; // id du premier objet affiché
 
-AfficherObjet(id); // affichage du premier objet id = 1
-/* -------- si c'est faux la ligne d'avant
-paramObjet(id); // requête pour obtenir tous les paramètres de cet objet et le traiter
-ListObjetsAffiches.push(id); // ajout de l'id du premier objet à la liste des objets qui ont été affichés
-console.log(ListObjetsAffiches); // test de vérification
-*/
+AfficherObjet(id);
+
+
+
 
 
 
@@ -137,7 +135,7 @@ function TraitementObjet(objet) {
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
 
     // Définition du popup en fonction du type de l'objet
-    if ( typeObjet != 1 && typeObjet != 2 ) {
+    if ( objet['indice'] != '' ) {
         marker.bindPopup(ContenuPopup(objet, typeObjet));
     }
     
@@ -163,6 +161,7 @@ function CreerIcone(objet, typeObjet) {
             iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [200, 200], // taille de l'icone
             iconAnchor:   [100, 100], // point de l'icone qui correspondra à la position du marker
+            popupAnchor:  [0, -100] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
         });
     }
     else {
@@ -177,6 +176,7 @@ function CreerIcone(objet, typeObjet) {
 }
 
 
+
 // Définit le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
     if ( typeObjet == 3 ) {
@@ -186,7 +186,7 @@ function ContenuPopup(objet, typeObjet) {
         + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
-    if ( typeObjet == 4 ) {
+    else {
         var popup = objet['indice'];
     }
     return popup;
@@ -221,12 +221,10 @@ function ValidFormObjetCode(event, objet){
 // Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
 function AffichageMarkerZoom(objet, marker) {
     var minzoom = objet['minzoom'];
-
     // Affichage direct si le zoom est correct
      if (map.getZoom() >= minzoom) {
         marker.addTo(map);
     }
-    
     // Apparition selon le zoom par la suite dans tous les cas
     map.on('zoomend', function(){
         if (map.getZoom() < minzoom){
@@ -239,9 +237,11 @@ function AffichageMarkerZoom(objet, marker) {
 }
 
 
-// supprimer le marker de la carte peu importe le zoom???????????définitivement ??
+// supprimer le marker de la carte définitivement
 function deleteMarker(id) {
+    // suppression immédiate au zoom actuel
     ListMarkers[id-1].remove();
+    // suppression à chaque niveau de zoom
     map.on('zoomend', function(){
         ListMarkers[id-1].remove();
     });
@@ -270,18 +270,26 @@ function click(objet) {
         // supprimer le marker de la carte
         deleteMarker(id);
 
-        // mettre l'objet dans l'inventaire
+        // Mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
-        var objetInventaire = document.createElement('img');
+        var objetInventaire = document.createElement('input');
+        objetInventaire.type = 'image';
         objetInventaire.src = objet['URLicone'];
         objetInventaire.style = 'width: 11vw ; height: 17vh';
+        objetInventaire.onclick = '';
         inventaire.appendChild(objetInventaire);
 
+
+
+        //  <input type="file" accept="image/*">
+
         // jouer audio indice
+        /*
         let i = 0;        
         var audio = new Audio('son{i}.mp3');
         audio.play();
         i += 1
+        */
         
 
         // utiliser objet (cliquer dessus pour l'utiliser)
