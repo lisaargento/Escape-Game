@@ -301,8 +301,6 @@ function click(objet) {
             var audio = new Audio(objet['audio']);
             setTimeout(audio.play(), 1000);
         }
-        
-
     }
 
     // Objet bloqué par un autre objet
