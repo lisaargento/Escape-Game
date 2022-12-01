@@ -55,6 +55,8 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom
 (7, 'Mont Saint Michel', "Le saviez-vous?\r\nCet îlot rocheux consacré à saint Michel est une étape des Chemins de Saint-Jacques-de-Compostelle. Il figure, avec sa baie, sur la liste du patrimoine mondiale de l'UNESCO depuis 1979. A l'origine nommé Mont Tombe, il y ait érigé un oratoire en l'honneur de l'archange saint Michel en 708 qui lui donnera plus tard l'appelation qu'on lui connait aujourd'hui.", 48.6358, -1.51194, 16, '../img/photo_mont.jpg', 1, 8, NULL, NULL),
 (8, 'Dinan', '', 48.4572, -2.03774, 16, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL),
 (9, 'Carte postale', '', 48.2766, -3.55418, 16, '../img/carte_postale.png', 2, NULL, NULL, NULL);
+(10, 'bon crepe', '',48.2139, -4.53925, 12, '../img/bon.png', 1, 10, NULL, NULL);
+(11, 'crepe', '', 47.8555, -3.90607, 17, 'crepe.png', 2, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
