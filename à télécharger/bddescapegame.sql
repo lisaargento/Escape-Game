@@ -56,7 +56,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom
 (8, 'Dinan', '', 48.4572, -2.03774, 16, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL),
 (9, 'Carte postale', '', 48.2766, -3.55418, 16, '../img/carte_postale.png', 2, NULL, NULL, NULL),
 (10, 'bon crepe', '',48.2139, -4.53925, 12, '../img/bon.png', 1, 10, NULL, NULL),
-(11, 'crepe', '', 47.8555, -3.90607, 17, 'crepe.png', 2, NULL, NULL, NULL),
+(11, 'crepe', '', 47.8555, -3.90607, 17, 'crepe.png', 2, NULL, NULL, NULL)
 
 -- --------------------------------------------------------
 
