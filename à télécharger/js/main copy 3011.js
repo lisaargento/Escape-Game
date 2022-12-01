@@ -27,7 +27,7 @@ function Rebours(duration, element) {
 
         secondsRemaining -= 1 ;
         if (secondsRemaining < 0) {
-            //enregistrer le score actuel????????
+            //enregistrer le score actuel?????????????????
             alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
             window.open('../resultats.html'); //redirige vers l'accueil
             clearInterval(countInterval)
@@ -36,8 +36,8 @@ function Rebours(duration, element) {
 }
 
 window.onload = function () {
-    let nb_min = 5; // nb de minutes au départ
-    let nb_sec = 0; // nb de secondes au départ
+    let nb_min = 3; // nb de minutes au départ
+    let nb_sec = 3; // nb de secondes au départ
     let duration = nb_min * 60 + nb_sec;
 
     chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
@@ -143,13 +143,25 @@ function TaitrementObjet(objet) {
     // Définition du marker
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
 
-    // Définition du popup en fonction du type de l'objet
-    if ( typeObjet != 1 && typeObjet != 2 ) {
-        marker.bindPopup(ContenuPopup(objet, typeObjet));
+    // Définition du popup en fonction de son type
+// ??? peut-etre mettre condition direct si type == 1 ou 2 pour ne rien créer ???
+    var popup = ContenuPopup(objet, typeObjet);
+    marker.bindPopup(popup);
+
+    // Affichage direct si le zoom est correct
+    if (map.getZoom() >= objet['minzoom']) {
+        marker.addTo(map);
     }
     
-    // Affichage du marker de l'objet en fonction du zoom
-    AffichageMarkerZoom(objet, marker);
+    // Apparition selon le zoom par la suite dans tous les cas
+    map.on('zoomend', function(){
+        if (map.getZoom() < objet['minzoom']){
+            marker.remove();
+        }
+        else {
+            marker.addTo(map);
+        }
+    })
     
     // Test et contrôle : mise à jour des marker crées
     ListMarkers.push(marker);
@@ -169,12 +181,13 @@ function CreerIcone(objet, typeObjet) {
         var img = L.icon({
             iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [200, 200], // taille de l'icone
-            iconAnchor:   [100, 100], // point de l'icone qui correspondra à la position du marker
+            iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
+            popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
         });
     }
     else {
         var img = L.icon({
-            iconUrl: objet['URLicone'], // lien de l'image c'est réglé non?
+            iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [50, 50], // taille de l'icone
             iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
             popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
@@ -186,14 +199,14 @@ function CreerIcone(objet, typeObjet) {
 
 // Définit le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
-    if ( typeObjet == 3 ) {
+    if (typeObjet == 3) {
         // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
         var popup = document.createElement('div');
         popup.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
         + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
-    if ( typeObjet == 4 ) {
+    if (typeObjet == 4) {
         var popup = objet['indice'];
     }
     return popup;
@@ -205,7 +218,6 @@ function ValidFormObjetCode(event, objet){
     event.preventDefault(); // on empêche l'envoi du formulaire pour que la page ne se recharge pas
 
     var code = document.getElementById('code').value; // on récupère la valeur entrée dans le formulaire à la validation
-    
     if (code == objet['idDebloquant']){
         score += 100; // on ajoute des points lorsque le code est trouvé
         console.log('Le code est ok !');
@@ -214,10 +226,8 @@ function ValidFormObjetCode(event, objet){
         if (ListObjetsAffiches.indexOf(idLibere) == -1 ) {
             // Création de l'objet libéré par cet objet bloqué par un code
             AfficherObjet(idLibere);
-             // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
-            for (i = objet['id']; i < idLibere; i++) {
-                deleteMarker(i);
-            }
+
+            // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
         }
     }
     else {
@@ -225,44 +235,10 @@ function ValidFormObjetCode(event, objet){
     }
 }
 
-// Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
-function AffichageMarkerZoom(objet, marker) {
-    var minzoom = objet['minzoom'];
-
-     // Affichage direct si le zoom est correct
-     if (map.getZoom() >= minzoom) {
-        marker.addTo(map);
-    }
-    
-    // Apparition selon le zoom par la suite dans tous les cas
-    map.on('zoomend', function(){
-        if (map.getZoom() < minzoom){
-            marker.remove();
-        }
-        else {
-            marker.addTo(map);
-        }
-    })
-}
-
-
-// supprimer le marker de la carte peu importe le zoom
-function deleteMarker(id) {
-    ListMarkers[id-1].remove();
-    map.on('zoomend', function(){
-        ListMarkers[id-1].remove();
-    });
-}
-
-
 // Actions d'un click en fonction des paramètres de l'objets
-function click(objet) {
-
+function click(objet, marker) {
     var type = objet['type'];
-    var id = objet['id'];
     var idSolution = objet['idSolution'];
-    var ibDebloquant = objet['idDebloquant'];
-    var idLibere = objet['idLibere'];
 
     // Objet Code ou objet bloqué par un code
     if ( (type == 1 || type == 3) && idSolution != null && ListObjetsAffiches.indexOf(idSolution) == -1) {
@@ -275,7 +251,10 @@ function click(objet) {
         score += 200; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
 
         // supprimer le marker de la carte
-        deleteMarker(id);
+        marker.remove();
+        map.on('zoomend', function(){
+            marker.remove();
+        });
 
         // mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
@@ -283,23 +262,15 @@ function click(objet) {
         objetInventaire.src = objet['URLicone'];
         objetInventaire.style = 'width: 10vw ; height: 18vh';
         inventaire.appendChild(objetInventaire);
-        score += 200; //????????????????????????
     }
 
     // Objet bloqué par un autre objet
     if ( type == 4 && ListObjetsAffiches.indexOf(idSolution) == -1) {
-        // le 1er click libère son objet solution
-        AfficherObjet(idSolution);
-
-        // SI l'objet débloquant est SELECTIONNE dans l'inventaire :
-        // on supprime l'objet bloqué et son objet solution
-        // on affiche son objet libere
-
         // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
         // if (objet d'ibDebloquant dans l'inventaire) {}
+        AfficherObjet(idSolution);
 
         // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
-            
     }
 
 }
@@ -310,10 +281,9 @@ function click(objet) {
 
 /*
 
-- retirer tous les marker dans les entêtes de fonction 
-=> remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
-
 - revoir code du compte à rebour
+
+- faire les suppressions
 
 
 - débloquer les objets bloqués par un autre objet lorsque ce dernier est dans l'inventaire
@@ -324,13 +294,17 @@ IDEES :
 pour cela => donner un id à chaquer image dans l'inventaire pour le vérifier avec ça document.getElementById('idDebloquant') ?
 
 
+
 */
+
 
 
 
 /*
 
 BONUS :
+
+- objet code : mettre un popup sous forme d'image ?
 
 - retirer des points si mauvais code ?
 
