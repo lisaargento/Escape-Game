@@ -228,22 +228,22 @@ function ValidFormObjetCode(event, objet){
 
 // Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
 function AffichageMarkerZoom(objet, marker) {
+    var minzoom = objet['minzoom'];
 
      // Affichage direct si le zoom est correct
-     if (map.getZoom() >= objet['minzoom']) {
+     if (map.getZoom() >= minzoom) {
         marker.addTo(map);
     }
     
     // Apparition selon le zoom par la suite dans tous les cas
     map.on('zoomend', function(){
-        if (map.getZoom() < objet['minzoom']){
+        if (map.getZoom() < minzoom){
             marker.remove();
         }
         else {
             marker.addTo(map);
         }
     })
-
 }
 
 
@@ -257,9 +257,13 @@ function deleteMarker(id) {
 
 
 // Actions d'un click en fonction des paramètres de l'objets
-function click(objet, marker) {
+function click(objet) {
+
     var type = objet['type'];
+    var id = objet['id'];
     var idSolution = objet['idSolution'];
+    var ibDebloquant = objet['idDebloquant'];
+    var idLibere = objet['idLibere'];
 
     // Objet Code ou objet bloqué par un code
     if ( (type == 1 || type == 3) && idSolution != null && ListObjetsAffiches.indexOf(idSolution) == -1) {
@@ -272,7 +276,7 @@ function click(objet, marker) {
         score += 200; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
 
         // supprimer le marker de la carte
-        deleteMarker(objet['id']);
+        deleteMarker(id);
 
         // mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
@@ -284,7 +288,12 @@ function click(objet, marker) {
 
     // Objet bloqué par un autre objet
     if ( type == 4 && ListObjetsAffiches.indexOf(idSolution) == -1) {
+        // le 1er click libère son objet solution
         AfficherObjet(idSolution);
+
+        // SI l'objet débloquant est SELECTIONNE dans l'inventaire :
+        // on supprime l'objet bloqué et son objet solution
+        // on affiche son objet libere
 
         // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
         // if (objet d'ibDebloquant dans l'inventaire) {}
@@ -301,9 +310,10 @@ function click(objet, marker) {
 
 /*
 
-- revoir code du compte à rebour
+- retirer tous les marker dans les entêtes de fonction 
+=> remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
 
-- faire les suppressions
+- revoir code du compte à rebour
 
 
 - débloquer les objets bloqués par un autre objet lorsque ce dernier est dans l'inventaire
@@ -314,17 +324,13 @@ IDEES :
 pour cela => donner un id à chaquer image dans l'inventaire pour le vérifier avec ça document.getElementById('idDebloquant') ?
 
 
-
 */
-
 
 
 
 /*
 
 BONUS :
-
-- objet code : mettre un popup sous forme d'image ?
 
 - retirer des points si mauvais code ?
 
