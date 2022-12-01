@@ -179,6 +179,7 @@ function CreerIcone(objet, typeObjet) {
 }
 
 
+
 // Définit le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
     if ( typeObjet == 3 ) {
@@ -223,12 +224,10 @@ function ValidFormObjetCode(event, objet){
 // Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
 function AffichageMarkerZoom(objet, marker) {
     var minzoom = objet['minzoom'];
-
     // Affichage direct si le zoom est correct
      if (map.getZoom() >= minzoom) {
         marker.addTo(map);
     }
-    
     // Apparition selon le zoom par la suite dans tous les cas
     map.on('zoomend', function(){
         if (map.getZoom() < minzoom){
