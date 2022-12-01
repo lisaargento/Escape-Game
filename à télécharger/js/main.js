@@ -284,12 +284,13 @@ function click(objet) {
         //  <input type="file" accept="image/*">
 
         // jouer audio indice
-        /*
-        let i = 0;        
-        var audio = new Audio('son{i}.mp3');
+
+        let i = 1;        
+        var audio = new Audio('../img/'+i+'.M4A');
         audio.play();
-        i += 1
-        */
+        i += 1;
+        console.log('../img/'+i+'.M4A');
+        
         
 
         // utiliser objet (cliquer dessus pour l'utiliser)
