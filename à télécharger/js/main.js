@@ -137,7 +137,8 @@ function TraitementObjet(objet) {
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
 
     // Définition du popup en fonction du type de l'objet
-    if ( typeObjet != 1 && typeObjet != 2 ) {
+    if ( objet['indice'] != '' ) {
+        console.log(objet['indice']);
         marker.bindPopup(ContenuPopup(objet, typeObjet));
     }
     
@@ -163,6 +164,7 @@ function CreerIcone(objet, typeObjet) {
             iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [200, 200], // taille de l'icone
             iconAnchor:   [100, 100], // point de l'icone qui correspondra à la position du marker
+            popupAnchor:  [0, -100] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
         });
     }
     else {
@@ -186,7 +188,7 @@ function ContenuPopup(objet, typeObjet) {
         + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
-    if ( typeObjet == 4 ) {
+    else {
         var popup = objet['indice'];
     }
     return popup;
@@ -239,9 +241,11 @@ function AffichageMarkerZoom(objet, marker) {
 }
 
 
-// supprimer le marker de la carte peu importe le zoom???????????définitivement ??
+// supprimer le marker de la carte définitivement
 function deleteMarker(id) {
+    // suppression immédiate au zoom actuel
     ListMarkers[id-1].remove();
+    // suppression à chaque niveau de zoom
     map.on('zoomend', function(){
         ListMarkers[id-1].remove();
     });
