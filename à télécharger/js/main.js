@@ -276,6 +276,12 @@ function click(objet) {
         objetInventaire.src = objet['URLicone'];
         objetInventaire.style = 'width: 11vw ; height: 17vh';
         inventaire.appendChild(objetInventaire);
+
+        // jouer audio indice
+        let i = 0;        
+        var audio = new Audio('son{i}.mp3');
+        audio.play();
+        i += 1
         
 
         // utiliser objet (cliquer dessus pour l'utiliser)
