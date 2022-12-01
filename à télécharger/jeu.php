@@ -34,8 +34,7 @@ include('php/inscription.php');
       <aside id="inventaire">
         <!--<p>Inventaire</p>-->
         <div id=obj class="scroller">
-          <!-- <img src=".. url de l'image ..." style="width:10vw;height:18vh;"> -->
-          <!-- <input id = .. type="file" accept=".. url de l'image ..."> -->
+          <!-- <input type ='image' src='.. url de l'image ...' style='width: 11vw; height: 17vh. border: 0px'> -->
         </div>
       </aside>
     

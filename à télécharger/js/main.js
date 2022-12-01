@@ -75,8 +75,11 @@ map.setView(positionDepart, 15);
 
 
 
-//  ------------- DEROULEMENT DE LA PARTIE ------------- //
+//  ---------------- DEROULEMENT DE LA PARTIE ---------------- //
 
+
+
+// ------ INITIALISATION DE LA PARTIE ------ //
 
 // Tableau des différents marqueurs
 var ListMarkers = new Array();
@@ -84,14 +87,13 @@ var ListMarkers = new Array();
 // Tableau des objets qui ont été affichés (vide au départ, il se remplit au fur et à mesure)
 var ListObjetsAffiches = new Array();
 
+// Map qui va contenir les objets récupérables une fois qu'ils sont mis dans l'inventaire
+var ListClicks = new Map();
 
-// Initialisation de la partie
-
+// Début du jeu
 var score = 0; // score initial
 let id = 1; // id du premier objet affiché
-
 AfficherObjet(id);
-
 
 
 
@@ -100,6 +102,7 @@ AfficherObjet(id);
 
 // ------ FONCTIONS UTILES ------ //
 
+
 // Permet d'afficher un objet en fonction de son id
 function AfficherObjet(id) {
     paramObjet(id); // requête permettant d'obtenir tous les paramètres de cet objet et de le traiter
@@ -107,7 +110,9 @@ function AfficherObjet(id) {
     console.log(ListObjetsAffiches); // test de vérification
 }
 
-// Récupère toutes les informations d'un objet en fonction de son id sous format JSON et appelle la fonction affichageObjet
+
+
+// Récupère toutes les informations d'un objet en fonction de son id sous format JSON et appelle la fonction TraitementObjet
 function paramObjet(id) {
     fetch('../php/main.php?id='+id)
     .then(result => result.json())
@@ -116,6 +121,7 @@ function paramObjet(id) {
         TraitementObjet(objetjson[0]);
     })
 }
+
 
 
 // Traitement des objets (en fonction de leur type notamment)
@@ -136,6 +142,7 @@ function TraitementObjet(objet) {
 
     // Définition du popup en fonction du type de l'objet
     if ( objet['indice'] != '' ) {
+        // Création d'un popup uniquement s'il y a un indice associé à l'objet
         marker.bindPopup(ContenuPopup(objet, typeObjet));
     }
     
@@ -156,7 +163,7 @@ function TraitementObjet(objet) {
 // Créer une icone en fonction du type de l'objet considéré
 function CreerIcone(objet, typeObjet) {
     if (typeObjet == 1) {
-        // l'image associée à un objet code est affichée en plus gros pour plus de visibilité
+        // L'image associée à un objet code est affichée en plus gros pour plus de visibilité
         var img = L.icon({
             iconUrl: objet['URLicone'], // lien de l'image
             iconSize:     [200, 200], // taille de l'icone
@@ -166,10 +173,10 @@ function CreerIcone(objet, typeObjet) {
     }
     else {
         var img = L.icon({
-            iconUrl: objet['URLicone'], // lien de l'image c'est réglé non?
-            iconSize:     [50, 50], // taille de l'icone
-            iconAnchor:   [25, 25], // point de l'icone qui correspondra à la position du marker
-            popupAnchor:  [0, -25] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
+            iconUrl: objet['URLicone'],
+            iconSize:     [50, 50],
+            iconAnchor:   [25, 25],
+            popupAnchor:  [0, -25]
         }); 
     }
     return img;
@@ -177,7 +184,7 @@ function CreerIcone(objet, typeObjet) {
 
 
 
-// Définit le contenu d'une popup en fonction du type de l'objet considéré
+// Définir le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
     if ( typeObjet == 3 ) {
         // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
@@ -193,11 +200,12 @@ function ContenuPopup(objet, typeObjet) {
 }
 
 
+
 // Validation du formulaire d'un objet bloqué par un code
 function ValidFormObjetCode(event, objet){
-    event.preventDefault(); // on empêche l'envoi du formulaire pour que la page ne se recharge pas
+    event.preventDefault(); // Empecher l'envoi du formulaire pour que la page ne se recharge pas
 
-    var code = document.getElementById('code').value; // on récupère la valeur entrée dans le formulaire à la validation
+    var code = document.getElementById('code').value; // Récupérer la valeur entrée dans le formulaire à la validation
     
     if (code == objet['idDebloquant']){
         score += 100; // on ajoute des points lorsque le code est trouvé
@@ -213,10 +221,13 @@ function ValidFormObjetCode(event, objet){
             }
         }
     }
+
     else {
         alert("Le code n'est pas correct ...");
     }
 }
+
+
 
 // Afficher un marker en fonction d'un zoom donné (renseigné dans la base de données)
 function AffichageMarkerZoom(objet, marker) {
@@ -237,7 +248,8 @@ function AffichageMarkerZoom(objet, marker) {
 }
 
 
-// supprimer le marker de la carte définitivement
+
+// Supprimer le marker de la carte définitivement
 function deleteMarker(id) {
     // suppression immédiate au zoom actuel
     ListMarkers[id-1].remove();
@@ -246,6 +258,7 @@ function deleteMarker(id) {
         ListMarkers[id-1].remove();
     });
 }
+
 
 
 // Actions d'un click en fonction des paramètres de l'objets
@@ -267,41 +280,27 @@ function click(objet) {
     if ( type == 2 ) {
         score += 200; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
 
-        // supprimer le marker de la carte
+        // Supprimer le marker de la carte
         deleteMarker(id);
 
         // Mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
-        var objetInventaire = document.createElement('input');
-        objetInventaire.type = 'image';
-        objetInventaire.src = objet['URLicone'];
-        objetInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red;';
-        inventaire.appendChild(objetInventaire);
+        var imgInventaire = document.createElement('input');
+        imgInventaire.type = 'image';
+        imgInventaire.src = objet['URLicone'];
+        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px';
+        inventaire.appendChild(imgInventaire);
+        ListClicks.set(id, 0);
+        console.log(ListClicks);
+        // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
+        imgInventaire.addEventListener( 'click', function(){clickInventaire(objet, imgInventaire);} );
+
+        // Jouer l'audio de l'indice associé
+        if (objet['audio'] != '') {
+            var audio = new Audio(objet['audio']);
+            setTimeout(audio.play(), 1000);
+        }
         
-        var clickType = 0;
-        objetInventaire.addEventListener( 'click', function(){clickInventaire(objetInventaire, clickType);} );
-
-
-        // utiliser objet (cliquer dessus pour l'utiliser)
-        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
-        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
-
-
-        //sauf crêpe -> si va dans l'inventaire = fin du jeu
-
-
-
-        //  <input type="file" accept="image/*">
-
-        // jouer audio indice
-        /*
-        let i = 0;        
-        var audio = new Audio('son{i}.mp3');
-        audio.play();
-        i += 1
-        */
-        
-
     }
 
     // Objet bloqué par un autre objet
@@ -323,18 +322,17 @@ function click(objet) {
 }
 
 
-
-
-
-function clickInventaire(objetInventaire, clickType){
-    if ( clickType % 2 == 0 ) {
-        objetInventaire.style = 'width: 11vw; height: 17vh; border: 2px; borderColor: red;';
+// Sélectionner ou Désélectionner un objet dans l'inventaire
+function clickInventaire(objet, imgInventaire){
+    let valClick = ListClicks.get(objet['id']);
+    if ( valClick % 2 == 0 ) {
+        imgInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red';
     }
     else {
-        objetInventaire.style = 'width: 11vw; height: 17vh; border: 0px; borderColor: black;';
+        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px';
     }
-    clickType += 1;
-    console.log(clickType);
+    ListClicks.set(objet['id'], valClick+1);
+    console.log(ListClicks);
 }
 
 
@@ -366,6 +364,19 @@ pour cela => donner un id à chaquer image dans l'inventaire pour le vérifier a
 
 
 */
+
+
+
+/*
+
+
+VOIR LA FIN DE JEU :
+
+partie finie quand 
+-> temps écoulé
+ou 
+-> objet crêpe dans l'inventaire
+
 
 
 
