@@ -21,7 +21,8 @@ include('php/inscription.php');
   
     <div id="barre">
       <p>Un tour de France</p>
-      <p id=chrono>00:00:00</p>
+      <p id="chrono">00:00:00</p>
+      <p id="son"><img src="img/sortir.png" style="width:6wh;height:7vh;"></p>
       <p><a id="sortir" href="accueil.html"><img src="img/sortir.png" style="width:6wh;height:7vh;"></a></p>
     </div>
 

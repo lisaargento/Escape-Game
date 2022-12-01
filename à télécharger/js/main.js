@@ -115,7 +115,7 @@ function paramObjet(id) {
     .then(result => result.json())
     .then(objetjson => {
         console.log(objetjson[0]);
-        TaitrementObjet(objetjson[0]);
+        TraitementObjet(objetjson[0]);
     })
 }
 
@@ -127,7 +127,7 @@ type == 2 : objet récupérable
 type == 3 : objet bloqué par un code
 type == 4 : objet bloqué par un autre objet
 */
-function TaitrementObjet(objet) {
+function TraitementObjet(objet) {
     var typeObjet = objet['type'];
 
     // Définition de l'icone en fonction de son type
