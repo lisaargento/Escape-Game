@@ -215,7 +215,7 @@ function ValidFormObjetCode(event, objet){
         if (ListObjetsAffiches.indexOf(idLibere) == -1 ) {
             // Création de l'objet libéré par cet objet bloqué par un code
             AfficherObjet(idLibere);
-             // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere[
+             // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere [
             for (i = objet['id']; i < idLibere; i++) {
                 deleteMarker(i);
             }
@@ -282,7 +282,7 @@ function click(objet) {
 
         // Supprimer le marker de la carte
         deleteMarker(id);
-
+        
         // Mettre l'objet dans l'inventaire
         var inventaire = document.getElementById('obj');
         var imgInventaire = document.createElement('input');
@@ -290,9 +290,10 @@ function click(objet) {
         imgInventaire.src = objet['URLicone'];
         imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px';
         inventaire.appendChild(imgInventaire);
+
+        // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
         ListClicks.set(id, 0);
         console.log(ListClicks);
-        // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
         imgInventaire.addEventListener( 'click', function(){clickInventaire(objet, imgInventaire);} );
 
         // Jouer l'audio de l'indice associé
@@ -301,6 +302,7 @@ function click(objet) {
             setTimeout(audio.play(), 1000);
         }
         
+
     }
 
     // Objet bloqué par un autre objet
