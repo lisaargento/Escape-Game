@@ -276,8 +276,15 @@ function click(objet) {
         objetInventaire.type = 'image';
         objetInventaire.src = objet['URLicone'];
         objetInventaire.style = 'width: 11vw ; height: 17vh';
-        objetInventaire.onclick = '';
+        objetInventaire.onclick = 'clickInventaire(this);';
         inventaire.appendChild(objetInventaire);
+
+        // utiliser objet (cliquer dessus pour l'utiliser)
+        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
+        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
+
+
+        //sauf crêpe -> si va dans l'inventaire = fin du jeu
 
 
 
@@ -292,12 +299,7 @@ function click(objet) {
         */
         
 
-        // utiliser objet (cliquer dessus pour l'utiliser)
-        //objetInventaire.addEventListener("click", objetInventaire.style = 'border: 2px; border-color: red;');  
-        //objetInventaire.getElementById("bonimg").onclick = function() { effetselectionne()};
 
-
-        //sauf crêpe -> si va dans l'inventaire = fin du jeu
     }
 
     // Objet bloqué par un autre objet
@@ -317,6 +319,24 @@ function click(objet) {
     }
 
 }
+
+
+
+
+
+
+function clickInventaire(objetInventaire){
+    var objetInventaire = objetInventaire.id;
+    alert("L’élément portant l'ID `" + form_element_id + "` à été cliqué !");
+}
+
+
+
+
+
+
+
+
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
