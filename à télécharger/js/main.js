@@ -302,7 +302,11 @@ function click(objet) {
             setTimeout(audio.play(), 1000);
         }
 
-        AfficherObjet(idSolution);
+        if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1) {
+            AfficherObjet(idLibere);
+        }
+
+        
     }
 
     // Objet bloqué par un autre objet
