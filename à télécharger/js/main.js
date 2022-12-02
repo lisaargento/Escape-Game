@@ -291,6 +291,8 @@ function click(objet) {
         imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px;';
         inventaire.appendChild(imgInventaire);
 
+
+
         // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
         ListClicks.set(id, 0);
         console.log(ListClicks);
@@ -303,7 +305,7 @@ function click(objet) {
         // Jouer l'audio de l'indice associé
         if (objet['audio'] != '') {
             var audio = new Audio(objet['audio']);
-            setTimeout(audio.play(), 1000);
+            setTimeout(audio.play(), 100);
         }
     }
 
@@ -361,19 +363,13 @@ function clickInventaire(objet, imgInventaire){
 
 /*
 
+
 - retirer tous les marker dans les entêtes de fonction 
 => remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
 
 - revoir code du compte à rebour
 
-
-- débloquer les objets bloqués par un autre objet lorsque ce dernier est dans l'inventaire
-IDEES :
-- pour gérer la possibilité du clik (que j'ai bloqué avant), changer cette possibilité lorsque l'objet débloquant est mis dans l'inventaire
-- possibilité de cliquer dans l'inventaire ? ça jsp comment faire
-- débloquer l'autre objet uniquement si le débloquant est cliqué :
-pour cela => donner un id à chaquer image dans l'inventaire pour le vérifier avec ça document.getElementById('idDebloquant') ?
-
+- reprendre tous les let et les var (pour vérification de la portée de chacun)
 
 */
 
@@ -400,7 +396,6 @@ BONUS :
 
 - ajouter de points si objet dans l'inventaire ok MAIS PRENDRE AUSSI EN COMPTE LE TEMPS ?
 
-- reprendre tous les let et les var (pour vérification de la portée de chacun)
 
 
 */
