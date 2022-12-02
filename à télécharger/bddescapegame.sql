@@ -56,8 +56,8 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `minzoom
 (7, 'Mont Saint Michel', 'Le saviez-vous ?\r\n<br> <br>\r\nCet îlot rocheux consacré à saint Michel est une étape des Chemins de Saint-Jacques-de-Compostelle. Il figure, avec sa baie, sur la liste du patrimoine mondiale de l\'UNESCO depuis 1979. A l\'origine nommé Mont Tombe, il y fut érigé un oratoire en l\'honneur de l\'archange saint Michel en 708 qui lui donnera plus tard l\'appellation qu\'on lui connait aujourd\'hui.', 48.6358, -1.51194, 16, '../img/photo_mont.jpg', 1, 8, NULL, NULL, ''),
 (8, 'Dinan', '', 48.4572, -2.03774, 16, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL, ''),
 (9, 'Carte postale', '', 48.2766, -3.55418, 16, '../img/carte_postale.png', 2, NULL, NULL, 10, '../audio/crozon.m4a'),
-(10, 'maison de Malo', 'On peut passer voir Malo ! Il me semble qu\'il est à Concarneau en ce moment ...', 48.2139, -4.53925, 15, '../img/maison.png', 3, 11, 16, 12, ''),
-(11, 'tete de Malo', '', 47.8555, -3.90607, 17, '../img/bon.png', 1, NULL, NULL, NULL, ''),
+(10, 'maison de Malo', "On peut passer voir Malo ! Il me semble qu'il est à Concarneau en ce moment ...", 48.2139, -4.53925, 15, '../img/maison.png', 3, 11, 16, 12, ''),
+(11, 'tete de Malo', '', 47.8555, -3.90607, 17, '../img/tete_malo.png', 1, NULL, NULL, NULL, ''),
 (12, 'crepe', '', 48.2139, -4.53925, 15, '../img/crepe.png', 2, NULL, NULL, NULL, '../audio/fin.m4a');
 
 -- --------------------------------------------------------
@@ -88,10 +88,6 @@ INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score
 (7, 'ARGENTO', 'Jean-Philippe', 'JP', NULL, NULL, NULL, NULL),
 (8, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
 (9, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
-(10, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
-(11, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
-(19, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL),
-(20, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL),
 (21, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL);
 
 --
