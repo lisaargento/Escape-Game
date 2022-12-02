@@ -288,7 +288,7 @@ function click(objet) {
         var imgInventaire = document.createElement('input');
         imgInventaire.type = 'image';
         imgInventaire.src = objet['URLicone'];
-        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px';
+        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px;';
         inventaire.appendChild(imgInventaire);
 
         // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
@@ -296,17 +296,16 @@ function click(objet) {
         console.log(ListClicks);
         imgInventaire.addEventListener( 'click', function(){clickInventaire(objet, imgInventaire);} );
 
+        if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1) {
+            AfficherObjet(idLibere);
+        }
+        
         // Jouer l'audio de l'indice associé
         if (objet['audio'] != '') {
             var audio = new Audio(objet['audio']);
             setTimeout(audio.play(), 1000);
         }
 
-        if (idLibere != null && ListObjetsAffiches.indexOf(idLibere) == -1) {
-            AfficherObjet(idLibere);
-        }
-
-        
     }
 
     // Objet bloqué par un autre objet
@@ -325,12 +324,11 @@ function click(objet) {
                 // Création de l'objet libéré par cet objet
                 AfficherObjet(idLibere);
                 // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere [
-                for (i = objet['id']; i < idLibere; i++) {
+                for (i = id; i < idLibere; i++) {
                     deleteMarker(i);
                 }
             }
         }
-
     }
 
 }
