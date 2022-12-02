@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : jeu. 01 déc. 2022 à 23:14
+-- Généré le : ven. 02 déc. 2022 à 00:13
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -88,7 +88,10 @@ INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score
 (8, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
 (9, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
 (10, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
-(11, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL);
+(11, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL, NULL),
+(19, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL),
+(20, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL),
+(21, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -120,7 +123,7 @@ ALTER TABLE `jeu`
 -- AUTO_INCREMENT pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

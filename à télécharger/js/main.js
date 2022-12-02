@@ -213,7 +213,7 @@ function ValidFormObjetCode(event, objet){
  
         var idLibere = objet['idLibere'];
         if (ListObjetsAffiches.indexOf(idLibere) == -1 ) {
-            // Création de l'objet libéré par cet objet bloqué par un code
+            // Création de l'objet libéré par cet objet
             AfficherObjet(idLibere);
              // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere [
             for (i = objet['id']; i < idLibere; i++) {
@@ -301,25 +301,36 @@ function click(objet) {
             var audio = new Audio(objet['audio']);
             setTimeout(audio.play(), 1000);
         }
+
+        AfficherObjet(idSolution);
     }
 
     // Objet bloqué par un autre objet
-    if ( type == 4 && ListObjetsAffiches.indexOf(idSolution) == -1) {
-        // le 1er click libère son objet solution
-        AfficherObjet(idSolution);
+    if ( type == 4) {
 
-        // SI l'objet débloquant est SELECTIONNE dans l'inventaire :
-        // on supprime l'objet bloqué et son objet solution
-        // on affiche son objet libere
+        if ( ListObjetsAffiches.indexOf(idSolution) == -1 ) {
+            // Le 1er clique libère son objet solution
+            AfficherObjet(idSolution);
+        }
 
-        // gérer de le débloquer (i.e. libérer l'objet d'idLibere) quand objet débloquant dans l'inventaire
-        // if (objet d'ibDebloquant dans l'inventaire) {}
+        // SI l'objet débloquant est dans l'inventaire
+        if ( ListClicks.has(ibDebloquant) ) {
+            let valClick = ListClicks.get(ibDebloquant);
+            // et SI il est sélectionné
+            if ( (valClick % 2 == 1) ) {
+                // Création de l'objet libéré par cet objet
+                AfficherObjet(idLibere);
+                // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere [
+                for (i = objet['id']; i < idLibere; i++) {
+                    deleteMarker(i);
+                }
+            }
+        }
 
-        // Suppression des markers des objets donc les id sont dans l'intervalle [ id ; idLibere[
-            
     }
 
 }
+
 
 
 // Sélectionner ou Désélectionner un objet dans l'inventaire
