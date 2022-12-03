@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.2
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 03, 2022 at 10:50 PM
--- Server version: 5.7.24
--- PHP Version: 8.0.1
+-- Hôte : localhost:8889
+-- Généré le : sam. 03 déc. 2022 à 23:37
+-- Version du serveur :  5.7.34
+-- Version de PHP : 7.4.21
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `bddescapegame`
+-- Base de données : `bddescapegame`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jeu`
+-- Structure de la table `jeu`
 --
 
 CREATE TABLE `jeu` (
@@ -45,7 +45,7 @@ CREATE TABLE `jeu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jeu`
+-- Déchargement des données de la table `jeu`
 --
 
 INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`, `height`, `minzoom`, `URLicone`, `type`, `idSolution`, `idDebloquant`, `idLibere`, `audio`) VALUES
@@ -65,7 +65,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `joueurs`
+-- Structure de la table `joueurs`
 --
 
 CREATE TABLE `joueurs` (
@@ -74,59 +74,47 @@ CREATE TABLE `joueurs` (
   `prenom` varchar(20) NOT NULL,
   `pseudo` varchar(20) NOT NULL,
   `temps` float DEFAULT NULL,
-  `etape` float DEFAULT NULL,
   `score` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `joueurs`
+-- Déchargement des données de la table `joueurs`
 --
 
-INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `etape`, `score`) VALUES
-(4, 'Girardin', 'Claire', 'Clairette', NULL, NULL, NULL),
-(5, 'Girardin', 'Claire', 'Clairette', NULL, NULL, NULL),
-(6, 'Argento', 'Lisa', 'lisaaaaa', NULL, NULL, NULL),
-(7, 'ARGENTO', 'Jean-Philippe', 'JP', NULL, NULL, NULL),
-(8, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL),
-(9, 'Argento', 'Lisa', 'efr', NULL, NULL, NULL),
-(21, 'Gir', 'Claire', 'clairette', NULL, NULL, NULL),
-(22, 'c c', 'vreg', 'ss', NULL, NULL, NULL),
-(23, 'ARGENTO', 'Lisa', 'CoIGN-CoIGN', NULL, NULL, NULL),
-(24, 'ARGENTO', 'Lisa', 'CoIGN-CoIGN', NULL, NULL, NULL),
-(25, 'ARGENTO', 'Lisa', 'CoIGN-CoIGN', NULL, NULL, NULL),
-(26, 'ARGENTO', 'Lisa', 'CoIGN-CoIGN', NULL, NULL, NULL);
+INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `score`) VALUES
+(27, 'Girardin', 'Claire', 'clairette', 10, 0);
 
 --
--- Indexes for dumped tables
+-- Index pour les tables déchargées
 --
 
 --
--- Indexes for table `jeu`
+-- Index pour la table `jeu`
 --
 ALTER TABLE `jeu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `joueurs`
+-- Index pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT pour les tables déchargées
 --
 
 --
--- AUTO_INCREMENT for table `jeu`
+-- AUTO_INCREMENT pour la table `jeu`
 --
 ALTER TABLE `jeu`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `joueurs`
+-- AUTO_INCREMENT pour la table `joueurs`
 --
 ALTER TABLE `joueurs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

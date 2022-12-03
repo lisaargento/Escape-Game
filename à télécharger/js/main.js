@@ -5,8 +5,8 @@
 var chrono = document.getElementById('chrono');
 
 var time = 0;
-var nb_min = 10; // nb de minutes au départ
-var nb_sec = 0; // nb de secondes au départ
+var nb_min = 0; // nb de minutes au départ
+var nb_sec = 10; // nb de secondes au départ
 var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
 
 window.onload = function () {
@@ -35,9 +35,10 @@ function Rebours(duration, element) {
         }
         secondsRemaining -= 1 ;
 
+        // FIN DE LA PARTIE SI le temps est écoulé
         if (secondsRemaining < 0) {
             // Enregistrement du temps et du score
-            temps = duration - time;
+            temps = duration - time + 1;
             saveFinPartie(temps, score);
             alert('FIN DE LA PARTIE ! Le temps imparti est dépassé ... ');
             // Changement de page
@@ -87,7 +88,7 @@ var ListObjetsAffiches = new Array();
 // Map qui va contenir les objets récupérables une fois qu'ils sont mis dans l'inventaire
 var ListClicks = new Map();
 
-// Début du jeu
+// Début du jeu : avec l'objet d'id 1
 var score = 0; // score initial
 let id = 1; // id du premier objet affiché
 AfficherObjet(id);
@@ -287,10 +288,10 @@ function click(objet) {
             setTimeout(audio.play(), 100);
         }
 
-        // FIN DE LA PARTIE SI L'OBJET CREPE EST DANS L'INVENTAIRE
+        // FIN DE LA PARTIE SI l'objet crêpe est dans l'inventaire
         if (ListClicks.has(12)) {
             // Enregistrement du temps et du score
-            let temps = duration - time;
+            let temps = duration - time + 1;
             saveFinPartie(temps, score);
             alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.');
             // Changement de page
@@ -300,10 +301,6 @@ function click(objet) {
 
     // Objet bloqué par un autre objet
     if ( type == 4) {
-
-        score += 100;
-        let temps = duration - time;
-        saveFinPartie(temps, score);
 
         if ( ListObjetsAffiches.indexOf(idSolution) == -1 ) {
             // Le 1er clique libère son objet solution
@@ -346,13 +343,7 @@ function clickInventaire(objet, imgInventaire){
 
 // Enregistrer le temps et le score du joueur 
 function saveFinPartie(temps, score) {
-    fetch('../php/resultats_perso.php?temps='+temps+'&score='+score);
-    /*
-    .then(result => result.json())
-    .then(json => {
-        console.log(json);
-    })
-    */
+    fetch('../php/resultats_perso.php?temps='+temps+'&score='+score)
 }
 
 
@@ -389,5 +380,6 @@ BONUS :
 
 
 // ligne 304 A VOIR !!!!! en test
+
 
 
