@@ -4,7 +4,18 @@
 
 var chrono = document.getElementById('chrono');
 
-function paddedFormat(num) { //renvoie le nombre complété d'un zéro si <10
+var time = 0;
+var nb_min = 5; // nb de minutes au départ
+var nb_sec = 0; // nb de secondes au départ
+var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
+
+window.onload = function () {
+    chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
+    Rebours(--duration, chrono);
+};
+
+function paddedFormat(num) {
+    // Renvoie le nombre complété d'un zéro si <10
     return num < 10 ? "0" + num : num; 
 }
 
@@ -20,33 +31,24 @@ function Rebours(duration, element) {
         sec = parseInt(secondsRemaining % 60);
 
         element.textContent = `${paddedFormat(min)}:${paddedFormat(sec)}`;
-        if(secondsRemaining<=60){
+        if (secondsRemaining <= 60){
             chrono.style.color = 'red';
         }
-
-
         secondsRemaining -= 1 ;
+
         if (secondsRemaining < 0) {
+
+            // cf ligne 315
             //enregistrer le score actuel????????
-            alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
-            window.open('../resultats.html'); //redirige vers l'accueil
-            clearInterval(countInterval)
+
+            //alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
+            //window.open('../resultats.html'); //redirige vers l'accueil
+            //clearInterval(countInterval)
         };
-    } , 1000);//pour executer le timer après chaque seconde (1000 milisecondes)
+        time = secondsRemaining; // mise à jour du temps restant 
+    } , 1000);//pour éxecuter le timer après chaque seconde (1000 milisecondes)
+
 }
-
-window.onload = function () {
-    let nb_min = 5; // nb de minutes au départ
-    let nb_sec = 0; // nb de secondes au départ
-    let duration = nb_min * 60 + nb_sec;
-
-    chrono.textContent = `${paddedFormat(nb_min)}:${paddedFormat(nb_sec)}`;
-
-    Rebours(--duration, chrono);
-};
-
-
-
 
 
 
@@ -66,9 +68,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 // position de départ du jeu
 var positionDepart = [48.841470, 2.587863];
 map.setView(positionDepart, 15);
-
-
-
 
 
 
@@ -186,15 +185,16 @@ function CreerIcone(objet, typeObjet) {
 
 // Définir le contenu d'une popup en fonction du type de l'objet considéré
 function ContenuPopup(objet, typeObjet) {
+    var popup = document.createElement('div');
+    popup.style.textAlign = 'justify';
     if ( typeObjet == 3 ) {
-        // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code        
-        var popup = document.createElement('div');
+        // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code
         popup.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
         + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
     else {
-        var popup = objet['indice'];
+        popup.innerHTML = '<div> <p>'+objet['indice']+'</p>';
     }
     return popup;
 }
@@ -291,8 +291,6 @@ function click(objet) {
         imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px;';
         inventaire.appendChild(imgInventaire);
 
-
-
         // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
         ListClicks.set(id, 0);
         console.log(ListClicks);
@@ -306,6 +304,16 @@ function click(objet) {
         if (objet['audio'] != '') {
             var audio = new Audio(objet['audio']);
             setTimeout(audio.play(), 100);
+        }
+
+        // FIN DE LA PARTIE SI L'OBJET CREPE EST DANS L'INVENTAIRE
+        if (ListClicks.has(12)) {
+            // Enregistrement du temps et du score
+            temps = duration - time;
+            saveFinPartie(temps, score);
+            // chnager de page
+
+            // cf ligne 30
         }
     }
 
@@ -348,6 +356,18 @@ function clickInventaire(objet, imgInventaire){
     ListClicks.set(objet['id'], valClick+1);
     console.log(ListClicks);
 }
+
+
+
+
+// Fonction envoyant les 
+function saveFinPartie(temps, score) {
+    // fetch pour enregistrer les résultats vers un php dédié
+}
+
+
+
+
 
 
 

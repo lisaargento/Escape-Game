@@ -26,18 +26,16 @@ include('php/inscription.php');
       <p><a id="sortir" href="accueil.html"><img src="img/sortir.png" style="width:6wh;height:7vh;"></a></p>
     </div>
 
+    <div id="map"></div>
     
-      <div id="map"></div>
-
-      <div id="sac"><img src="img/sac_inv.png" style="width:13vw;height:17vh;"></a></div>
+    <div id="sac"><img src="img/sac_inv.png" style="width:13vw;height:17vh;"></a></div>
    
-      <aside id="inventaire">
-        <!--<p>Inventaire</p>-->
-        <div id=obj class="scroller">
-          <!-- <input type ='image' src='.. url de l'image ...' style='width: 11vw; height: 17vh. border: 0px'> -->
-        </div>
-      </aside>
-    
+    <aside id="inventaire">
+      <!--<p>Inventaire</p>-->
+      <div id=obj class="scroller">
+        <!-- <input type ='image' src='.. url de l'image ...' style='width: 11vw; height: 17vh. border: 0px'> -->
+      </div>
+    </aside>
     
     <script src="https://unpkg.com/leaflet@1.9.2/dist/leaflet.js"></script>
     <script src='js/main.js'></script>
