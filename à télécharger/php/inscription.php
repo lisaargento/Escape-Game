@@ -1,5 +1,7 @@
 <?php 
 
+// include('connect.php');
+
 // CONNEXION A LA BDD
 $link = mysqli_connect('localhost', 'root', 'root', 'bddescapegame');
 
@@ -12,7 +14,7 @@ mysqli_set_charset($link, "utf8");
 
 
 
-// INSERTION DES DONNEES
+// INSERTION DES DONNEES : nom, prénom et pseudo
 
 if( isset( $_GET['nom'] ) ) {
     $nom = $_GET['nom'];
@@ -24,6 +26,5 @@ if( isset( $_GET['nom'] ) ) {
 
 
 ?>
-
 
 

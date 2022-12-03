@@ -382,45 +382,22 @@ function saveFinPartie(temps, score) {
 
 
 /*
-
-
 - retirer tous les marker dans les entêtes de fonction 
 => remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
-
 - revoir code du compte à rebour
-
 - reprendre tous les let et les var (pour vérification de la portée de chacun)
-
 */
 
 
 
 /*
-
-
 VOIR LA FIN DE JEU :
-
 partie finie quand 
 -> temps écoulé
 ou 
 -> objet crêpe dans l'inventaire
-
-
-
-
 /*
-
 BONUS :
-
 - retirer des points si mauvais code ?
-
 - ajouter de points si objet dans l'inventaire ok MAIS PRENDRE AUSSI EN COMPTE LE TEMPS ?
-
-
-
 */
-
-
-
-
-
