@@ -26,5 +26,3 @@ if( isset( $_GET['nom'] ) ) {
 
 
 ?>
-
-
