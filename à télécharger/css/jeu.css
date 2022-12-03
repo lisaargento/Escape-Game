@@ -68,6 +68,9 @@
     flex-flow: column wrap;
     grid-row-gap: 2vh; 
 }
+.indice{
+    text-align: justify;
+}
 
 
 
