@@ -131,8 +131,15 @@ type == 4 : objet bloqué par un autre objet
 function TraitementObjet(objet) {
     var typeObjet = objet['type'];
 
-    // Définition de l'icone en fonction de son type
-    var img = CreerIcone(objet, typeObjet);
+    // Définition de l'icone
+    let largeur = objet['width'];
+    let hauteur = objet['height'];
+    var img = L.icon({
+        iconUrl: objet['URLicone'], // lien de l'image
+        iconSize:     [largeur, hauteur], // taille de l'icone
+        iconAnchor:   [largeur/2, hauteur/2], // point de l'icone qui correspondra à la position du marker
+        popupAnchor:  [0, -hauteur/2] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
+    });
 
     // Définition du marker
     var marker = L.marker([objet['latitude'], objet['longitude']], {icon: img});
@@ -153,30 +160,6 @@ function TraitementObjet(objet) {
     // Actions du click en fonction des paramètres de l'objet considéré
     marker.addEventListener( 'click', function() { click(objet, marker) } );
 
-}
-
-
-
-// Créer une icone en fonction du type de l'objet considéré
-function CreerIcone(objet, typeObjet) {
-    if (typeObjet == 1) {
-        // L'image associée à un objet code est affichée en plus gros pour plus de visibilité
-        var img = L.icon({
-            iconUrl: objet['URLicone'], // lien de l'image
-            iconSize:     [200, 200], // taille de l'icone
-            iconAnchor:   [100, 100], // point de l'icone qui correspondra à la position du marker
-            popupAnchor:  [0, -100] // point depuis lequel la popup doit s'ouvrir relativement à l'iconAnchor
-        });
-    }
-    else {
-        var img = L.icon({
-            iconUrl: objet['URLicone'],
-            iconSize:     [50, 50],
-            iconAnchor:   [25, 25],
-            popupAnchor:  [0, -25]
-        }); 
-    }
-    return img;
 }
 
 
@@ -405,6 +388,6 @@ BONUS :
 */
 
 
-// ligne 320 A VOIR !!!!! en test
+// ligne 304 A VOIR !!!!! en test
 
 
