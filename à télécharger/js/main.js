@@ -5,7 +5,7 @@
 var chrono = document.getElementById('chrono');
 
 var time = 0;
-var nb_min = 5; // nb de minutes au départ
+var nb_min = 1; // nb de minutes au départ
 var nb_sec = 0; // nb de secondes au départ
 var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
 
@@ -24,9 +24,8 @@ function Rebours(duration, element) {
     let secondsRemaining = duration;
     let min = 0;
     let sec = 0;
-
-    let countInterval = setInterval(function () {
-
+    
+    setInterval(function () {
         min = parseInt(secondsRemaining / 60);
         sec = parseInt(secondsRemaining % 60);
 
@@ -37,13 +36,12 @@ function Rebours(duration, element) {
         secondsRemaining -= 1 ;
 
         if (secondsRemaining < 0) {
-
-            // cf ligne 315
-            //enregistrer le score actuel????????
-
-            //alert("Le temps imparti est dépassé ! Vous avez "+ score+ " points.");
-            //window.open('../resultats.html'); //redirige vers l'accueil
-            //clearInterval(countInterval)
+            // Enregistrement du temps et du score
+            temps = duration - time;
+            saveFinPartie(temps, score);
+            alert('FIN DE LA PARTIE ! Le temps imparti est dépassé ... ');
+            // Changement de page
+            window.location.href = '../resultats_perso.html';
         };
         time = secondsRemaining; // mise à jour du temps restant 
     } , 1000);//pour éxecuter le timer après chaque seconde (1000 milisecondes)
@@ -66,8 +64,8 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // position de départ du jeu
-var positionDepart = [48.841470, 2.587863];
-map.setView(positionDepart, 15);
+var positionDepart = [48.8560648, 2.6139978];
+map.setView(positionDepart, 13);
 
 
 
@@ -190,11 +188,11 @@ function ContenuPopup(objet, typeObjet) {
     if ( typeObjet == 3 ) {
         // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code
         popup.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
-        + '<p><input type="submit" value="vérifier" id="ok"></p> </form>';
+        + '<p><input type="submit" value="vérifier" id="ok"></p> </form> </div>';
         popup.addEventListener('submit', function(event){ ValidFormObjetCode(event, objet); })
     }
     else {
-        popup.innerHTML = '<div> <p>'+objet['indice']+'</p>';
+        popup.innerHTML = '<div> <p>'+objet['indice']+'</p> </div>';
     }
     return popup;
 }
@@ -288,7 +286,7 @@ function click(objet) {
         var imgInventaire = document.createElement('input');
         imgInventaire.type = 'image';
         imgInventaire.src = objet['URLicone'];
-        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px;';
+        imgInventaire.style = 'width: 11vw; height: 17vh; border: 0px;';
         inventaire.appendChild(imgInventaire);
 
         // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
@@ -309,16 +307,20 @@ function click(objet) {
         // FIN DE LA PARTIE SI L'OBJET CREPE EST DANS L'INVENTAIRE
         if (ListClicks.has(12)) {
             // Enregistrement du temps et du score
-            temps = duration - time;
+            let temps = duration - time;
             saveFinPartie(temps, score);
-            // chnager de page
-
-            // cf ligne 30
+            alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.');
+            // Changement de page
+            window.location.href = '../resultats_perso.html'
         }
     }
 
     // Objet bloqué par un autre objet
     if ( type == 4) {
+
+        score += 100;
+        let temps = duration - time;
+        saveFinPartie(temps, score);
 
         if ( ListObjetsAffiches.indexOf(idSolution) == -1 ) {
             // Le 1er clique libère son objet solution
@@ -348,10 +350,10 @@ function click(objet) {
 function clickInventaire(objet, imgInventaire){
     let valClick = ListClicks.get(objet['id']);
     if ( valClick % 2 == 0 ) {
-        imgInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red';
+        imgInventaire.style = 'width: 11vw; height: 17vh; border: solid 3px red;';
     }
     else {
-        imgInventaire.style = 'width: 11vw; height: 17vh. border: 0px';
+        imgInventaire.style = 'width: 11vw; height: 17vh; border: 0px;';
     }
     ListClicks.set(objet['id'], valClick+1);
     console.log(ListClicks);
@@ -359,16 +361,16 @@ function clickInventaire(objet, imgInventaire){
 
 
 
-
-// Fonction envoyant les 
+// Enregistrer le temps et le score du joueur 
 function saveFinPartie(temps, score) {
-    // fetch pour enregistrer les résultats vers un php dédié
+    fetch('../php/resultats_perso.php?temps='+temps+'&score='+score);
+    /*
+    .then(result => result.json())
+    .then(json => {
+        console.log(json);
+    })
+    */
 }
-
-
-
-
-
 
 
 
@@ -401,3 +403,8 @@ BONUS :
 - retirer des points si mauvais code ?
 - ajouter de points si objet dans l'inventaire ok MAIS PRENDRE AUSSI EN COMPTE LE TEMPS ?
 */
+
+
+// ligne 320 A VOIR !!!!! en test
+
+
