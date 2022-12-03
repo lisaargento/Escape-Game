@@ -8,7 +8,7 @@
 /*Resultats perso*/
 #bilan {
     font-family: allura;
-    font-size: 5em;
+    font-size: 8em;
     text-align: center;
 }
 
@@ -17,7 +17,7 @@
     text-align: center;
     color: floralwhite;
     background-color: rgba(33, 45, 42, 0.703);
-    height: 65vh;
+    height: 60vh;
     margin-left: 20vw;
     margin-right: 20vw;
     padding-left: 20px;
