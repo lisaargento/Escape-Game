@@ -5,17 +5,22 @@
     background-size: cover;
 }
 
-/*Resultats perso*/
+#entete{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
 #bilan {
     font-family: allura;
     font-size: 5em;
-    text-align: center;
+    margin-right: 22vw;
 }
+
 #presentation{
     text-align: center;
     color: floralwhite;
     background-color: rgba(33, 45, 42, 0.703);
-    height: 65vh;
+    height: 60vh;
     margin-top: -5vh;
     margin-left: 20vw;
     margin-right: 20vw;
@@ -24,17 +29,7 @@
     border-radius: 5px;
     border: 3px floralwhite solid;
     font-family: calibri;
-}
-
-
-p{
+    font-size: x-large;
     font-weight: bold;
-    font-family: allura;
-    font-size: xx-large;
-}
-
-#sortir{
-    display: flex;
-    flex-direction: row-reverse;
 }
 
