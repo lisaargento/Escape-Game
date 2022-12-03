@@ -45,7 +45,6 @@ p{
     border-collapse: collapse;
 }
 
-
 #sortir{
     display: flex;
     flex-direction: row-reverse;
