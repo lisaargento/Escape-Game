@@ -5,8 +5,8 @@
 var chrono = document.getElementById('chrono');
 
 var time = 0;
-var nb_min = 0; // nb de minutes au départ
-var nb_sec = 10; // nb de secondes au départ
+var nb_min = 15; // nb de minutes au départ
+var nb_sec = 0; // nb de secondes au départ
 var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
 
 window.onload = function () {
@@ -273,6 +273,7 @@ function click(objet) {
         imgInventaire.style = 'width: 11vw; height: 17vh; border: 0px;';
         inventaire.appendChild(imgInventaire);
 
+
         // Sélectionner ou désélectionner l'objet dans l'inventaire (par alternance de click)
         ListClicks.set(id, 0);
         console.log(ListClicks);
@@ -285,7 +286,13 @@ function click(objet) {
         // Jouer l'audio de l'indice associé
         if (objet['audio'] != '') {
             var audio = new Audio(objet['audio']);
-            setTimeout(audio.play(), 100);
+            audio.play();
+        }
+
+        //exeption pour l'appel -> s'affiche avant l'audio!!!!!!!!!!!
+        if (ListClicks.has(5)) {
+            // Enregistrement du temps et du score
+            window.alert('Indice : Le festival des vielles Charrues a lieu à Carhaix Plouguer.');
         }
 
         // FIN DE LA PARTIE SI l'objet crêpe est dans l'inventaire
@@ -293,7 +300,7 @@ function click(objet) {
             // Enregistrement du temps et du score
             let temps = duration - time + 1;
             saveFinPartie(temps, score);
-            alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.');
+            setTimeout(alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.'),5000);
             // Changement de page
             window.location.href = '../resultats_perso.html'
         }
