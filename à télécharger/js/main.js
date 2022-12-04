@@ -38,10 +38,10 @@ function Rebours(duration, element) {
         // FIN DE LA PARTIE SI le temps est écoulé
         if (secondsRemaining < 0) {
             // Enregistrement du temps et du score
-            temps = duration - time + 1;
+            let temps = duration - time + 1;
             saveFinPartie(temps, score);
+            // Alerte de fin de partie et changement de page
             alert('FIN DE LA PARTIE ! Le temps imparti est dépassé ... ');
-            // Changement de page
             window.location.href = '../resultats_perso.html';
         };
         time = secondsRemaining; // mise à jour du temps restant 
@@ -300,9 +300,8 @@ function click(objet) {
             // Enregistrement du temps et du score
             let temps = duration - time + 1;
             saveFinPartie(temps, score);
-            setTimeout(alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.'),5000);
-            // Changement de page
-            window.location.href = '../resultats_perso.html'
+            // Alerte de fin de partie et changement de page APRES LE TEMPS DE L'AUDIO
+            setTimeout(alertFinPartie, 5000);
         }
     }
 
@@ -355,7 +354,10 @@ function saveFinPartie(temps, score) {
 
 
 
-
+function alertFinPartie() {
+    alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.');
+    window.location.href = '../resultats_perso.html';
+}
 
 
 
@@ -365,28 +367,24 @@ function saveFinPartie(temps, score) {
 
 
 /*
+
+Perfectionnement :
+
 - retirer tous les marker dans les entêtes de fonction 
 => remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
-- revoir code du compte à rebour
+
 - reprendre tous les let et les var (pour vérification de la portée de chacun)
+
 */
 
 
 
-/*
-VOIR LA FIN DE JEU :
-partie finie quand 
--> temps écoulé
-ou 
--> objet crêpe dans l'inventaire
 /*
 BONUS :
 - retirer des points si mauvais code ?
-- ajouter de points si objet dans l'inventaire ok MAIS PRENDRE AUSSI EN COMPTE LE TEMPS ?
+- ajouter de points si objet dans l'inventaire 
 */
 
-
-// ligne 304 A VOIR !!!!! en test
 
 
 
