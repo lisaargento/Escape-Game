@@ -31,6 +31,7 @@ Sur mac:
 
 ### Pour commencer
 - Tapez "localhost" dans la barre d'un moteur de recherche (en vous assurant que MAMP est toujours actif).
+- Activez le son de votre ordinateur.
 - Lisez attentivement les conseils de la page d'accueil.
 - Appuyez sur le bouton JOUER !
 - Renseignez votre nom, prénom et un pseudo et lancez le jeu.
