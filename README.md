@@ -1,8 +1,8 @@
 # Escape-Game
-Projet web ING2 - Lisa ARgento et Claire Girardin
+Projet web ING2 - Lisa Argento et Claire Girardin
 
 ####
-Nous avons décidé de vous inviter dans notre premier voyage à vélo à travers la France pour découvrir une magnique région et des paysages magnifiques méconnus.
+Nous avons décidé de vous inviter dans notre premier voyage à vélo à travers la France pour découvrir une magnique région et des paysages méconnus.
 
 Pour nous aider il suffit de suivre les instructions qui suivent !
 
@@ -11,10 +11,10 @@ Pour nous aider il suffit de suivre les instructions qui suivent !
 - télécharger tous les documents du dossier "télécharger" sur votre ordinateur.
 - 
 
-POUR LA BDD :
-- utiliser MAMP etrenseigner le chemin vers le document "accueil.html" présent dans la racine du dossier téléchargement.
-- créer manuellement une base de données nommée "bddescapegame" dans MySQL de MAMP.
-- importer le fichier "bddescapegame.sql" dans cette BDD (! ATTENTION ! Assurez vous que l'identifiant et le mot de passe sont corrects.)
+  POUR LA BDD :
+  - utiliser MAMP etrenseigner le chemin vers le document "accueil.html" présent dans la racine du dossier téléchargement.
+  - créer manuellement une base de données nommée "bddescapegame" dans MySQL de MAMP.
+  - importer le fichier "bddescapegame.sql" dans cette BDD (! ATTENTION ! Assurez vous que l'identifiant et le mot de passe sont corrects.)
 
 Sur windows:
 
