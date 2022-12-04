@@ -24,7 +24,7 @@
 #presentation{
     text-align: center;
     color: floralwhite;
-    background-color: rgba(0, 0, 0, 0.753);
+    background-color: rgba(22, 31, 29, 0.703);
     margin-left: 20vw;
     margin-right: 20vw;
     margin-bottom: 7vh;
@@ -35,7 +35,7 @@
     font-family: calibri;
     font-weight: bold;
     font-size: 100%;
-    margin-bottom: 4%;
+    margin-bottom: 1%;
 }
 
 /***************style boutton***************/
@@ -48,7 +48,7 @@
     font-family: calibri;
     background-color: #ffffffba;
     border-radius: 10px;
-    border: 4px double #000000;
+    border: 3px #000000;
     padding: 15px; 
     float: right;
     margin-right: 2vw;
@@ -56,7 +56,8 @@
 }
 
 #resultats:hover {
-    background-color: #000000b7;
-    border: 4px double #ffffff;
+    background-color: rgba(22, 31, 29, 0.703);
+    border: 3px;
+    border-color: #ffffff;
     color: #ffffff;
   }

@@ -289,7 +289,7 @@ function click(objet) {
             audio.play();
         }
 
-        //exeption pour l'appel -> s'affiche avant l'audio!!!!!!!!!!!
+        //exeption pour l'appel -> s'affiche avant l'audio et pour chaque objet !!!!!!!!!!! tU peux régler s'il te plait?
         if (ListClicks.has(5)) {
             // Enregistrement du temps et du score
             window.alert('Indice : Le festival des vielles Charrues a lieu à Carhaix Plouguer.');
