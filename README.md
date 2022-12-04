@@ -1,5 +1,5 @@
 # Escape-Game
-Projet web ING2
+Projet web ING2- Lisa ARgento et Claire Girardin
 
 ####
 Nous avons décidé de vous inviter dans la préparation de notre voyage à vélo à travers la France pour découvrir tous les paysages magnifiques méconnus [article](lien de l'article) 
@@ -16,6 +16,12 @@ POUR LA BDD :
 - créer manuellement une base de données nommée "bddescapegame" dans MySQL de MAMP.
 - importer le fichier "bddescapegame.sql" dans cette BDD (! ATTENTION ! Assurez vous que l'identifiant et le mot de passe sont corrects.)
 
+Sur windows:
+
+```
+à copier
+```
+Sur mac:
 
 ```
 à copier
