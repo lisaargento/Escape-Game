@@ -11,10 +11,9 @@
 #barre{
     flex-basis: 100vw;
     height: 7vh;
-    background: linear-gradient(to right,  rgb(0, 162, 255), yellow, orange);
+    background: linear-gradient(to right,  rgb(65, 52, 108), rgb(173, 142, 107));
     list-style-type: none;
     display: flex;
-    flex-direction: row;
     justify-content: space-around;
     align-items: center;
     font-family: allura;
@@ -22,7 +21,6 @@
     font-weight: bold;
     border-style: groove;
     padding-top: 1vh;
-    /*clear: right; */
 }
 #barre > p:last-child {
     padding-top: 2vh;
