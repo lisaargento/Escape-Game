@@ -43,7 +43,6 @@ h1 {
   color: black;
   text-decoration: none;
   font-weight: bold;
-  font-size: 1em;
   font-family: calibri;
 }
 
@@ -58,10 +57,9 @@ button {
   border: 4px double #cccccc;
   color: #eeeeee;
   text-align: center;
-  font-size: 28px;
+  font-size: 180%;/*taille flèche et texte*/
   padding: 20px;
-  width: 20vw;
-  margin: 1vw;
+  margin: 2vw;/*espace entre les boutons*/
 }
 
 button span {
