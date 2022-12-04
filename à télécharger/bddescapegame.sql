@@ -57,7 +57,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`,
 (6, 'Places', 'J’avais prévu qu’on aille voir la plus grande fierté des Montois avant de commencer le tour de Bretagne.\r\n<br> <br>\r\nIndice : Le code est caché dans des photos.', 48.2766, -3.55418, 100, 100, 14, '../img/place.png', 3, 7, 5712, 9, ''),
 (7, 'Mont Saint Michel', 'Le saviez-vous ?\r\n<br><br>\r\nCet îlot rocheux consacré à saint Michel est une étape des Chemins de Saint-Jacques-de-Compostelle. Il figure, avec sa baie, sur la liste du patrimoine mondiale de l\'UNESCO depuis 1979. A l\'origine nommé Mont Tombe, il y fut érigé un oratoire en l\'honneur de l\'archange saint Michel en 708 qui lui donnera plus tard l\'appellation qu\'on lui connait aujourd\'hui.', 48.6358, -1.51194, 500, 400, 16, '../img/mont.png', 1, 8, NULL, NULL, ''),
 (8, 'Dinan', '', 48.4572, -2.03774, 300, 260, 15, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL, ''),
-(9, 'Carte postale', '', 48.2766, -3.55418, 270, 210, 16, '../img/carte_postale.png', 2, NULL, NULL, 10, '../audio/crozon.M4A'),
+(9, 'Carte postale', 'On y va à vélo?', 48.2766, -3.55418, 270, 210, 16, '../img/carte_postale.png', 4, NULL, NULL, 10, '../audio/crozon.M4A'),
 (10, 'maison de Malo', 'On peut passer voir Malo ! Il me semble qu\'il est à Concarneau en ce moment ...', 48.2419, -4.4927, 100, 100, 14, '../img/maison.png', 3, 11, 16, 12, ''),
 (11, 'tete de Malo', '', 47.877, -3.90788, 180, 200, 15, '../img/malo.png', 1, NULL, NULL, NULL, ''),
 (12, 'crepe', '', 48.2419, -4.4927, 150, 150, 14, '../img/crepe.png', 2, NULL, NULL, NULL, '../audio/fin.m4a');
