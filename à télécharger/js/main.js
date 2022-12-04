@@ -361,30 +361,3 @@ function alertFinPartie() {
 
 
 
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/*
-
-Perfectionnement :
-
-- retirer tous les marker dans les entêtes de fonction 
-=> remplacer marker par ListMarkers[id-1] où id = objet['id'] SAUF POUR LA FONCTION AffichageMarkerZoom
-
-- reprendre tous les let et les var (pour vérification de la portée de chacun)
-
-*/
-
-
-
-/*
-BONUS :
-- retirer des points si mauvais code ?
-- ajouter de points si objet dans l'inventaire 
-*/
-
-
-
-
