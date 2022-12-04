@@ -29,8 +29,8 @@ alert("N'oublier pas d'activer votre son pour bénéficier de tous les indices ;
 var chrono = document.getElementById('chrono');
 
 var time = 0;
-var nb_min = 0; // nb de minutes au départ
-var nb_sec = 3; // nb de secondes au départ
+var nb_min = 20; // nb de minutes au départ
+var nb_sec = 0; // nb de secondes au départ
 var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
 
 window.onload = function () {
