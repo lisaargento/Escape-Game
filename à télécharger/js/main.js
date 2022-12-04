@@ -1,3 +1,27 @@
+
+
+//  ------------------------ AFFICHAGE DE LA CARTE ------------------------ //
+
+var map = L.map('map');
+
+var maxZoomMap = 19;
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: maxZoomMap,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+}).addTo(map);
+
+// position de départ du jeu
+var positionDepart = [48.8560648, 2.6139978];
+map.setView(positionDepart, 13);
+
+alert("N'oublier pas d'activer votre son pour bénéficier de tous les indices ;)");
+
+
+
+
+
+
+
 // ------------- AFFICHAGE DU COMPTE A REBOURS DANS LE BARRE ------------- //
 
 // Inspiration : https://www.delftstack.com/fr/howto/javascript/count-down-timer-in-javascript/
@@ -5,8 +29,8 @@
 var chrono = document.getElementById('chrono');
 
 var time = 0;
-var nb_min = 15; // nb de minutes au départ
-var nb_sec = 0; // nb de secondes au départ
+var nb_min = 0; // nb de minutes au départ
+var nb_sec = 3; // nb de secondes au départ
 var duration = nb_min * 60 + nb_sec; // temps au départ (en secondes)
 
 window.onload = function () {
@@ -54,26 +78,8 @@ function Rebours(duration, element) {
 
 
 
-//  ------------- AFFICHAGE DE LA CARTE ------------- //
 
-var map = L.map('map');
-
-var maxZoomMap = 19;
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    maxZoom: maxZoomMap,
-    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-// position de départ du jeu
-var positionDepart = [48.8560648, 2.6139978];
-map.setView(positionDepart, 13);
-
-
-
-
-
-
-//  ---------------- DEROULEMENT DE LA PARTIE ---------------- //
+//  ---------------------- DEROULEMENT DE LA PARTIE ---------------------- //
 
 
 
@@ -190,7 +196,8 @@ function ValidFormObjetCode(event, objet){
     var code = document.getElementById('code').value; // Récupérer la valeur entrée dans le formulaire à la validation
     
     if (code == objet['idDebloquant']){
-        score += 100; // on ajoute des points lorsque le code est trouvé
+        score += 150; // on ajoute des points lorsque le code est trouvé
+        console.log(score);
         console.log('Le code est ok !');
  
         var idLibere = objet['idLibere'];
@@ -205,7 +212,10 @@ function ValidFormObjetCode(event, objet){
     }
 
     else {
+        score -= 25; // on retire des points lorsque le code est incorrect
+        console.log(score);
         alert("Le code n'est pas correct ...");
+
     }
 }
 
@@ -260,7 +270,8 @@ function click(objet) {
 
     // Objet récupérable
     if ( type == 2 ) {
-        score += 200; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
+        score += 75; // on ajoute des points lorsque l'objet est trouvé (i.e. cliqué et mis dans l'inventaire)
+        console.log(score);
 
         // Supprimer le marker de la carte
         deleteMarker(id);
@@ -283,20 +294,17 @@ function click(objet) {
             AfficherObjet(idLibere);
         }
         
-        // Jouer l'audio de l'indice associé
+        // Jouer l'audio, s'il existe
         if (objet['audio'] != '') {
             var audio = new Audio(objet['audio']);
-            audio.play();
-        }
-
-        //exeption pour l'appel -> s'affiche avant l'audio et pour chaque objet !!!!!!!!!!! tU peux régler s'il te plait?
-        if (ListClicks.has(5)) {
-            // Enregistrement du temps et du score
-            window.alert('Indice : Le festival des vielles Charrues a lieu à Carhaix Plouguer.');
+            setTimeout(audio.play(), 2000);
         }
 
         // FIN DE LA PARTIE SI l'objet crêpe est dans l'inventaire
         if (ListClicks.has(12)) {
+            score += 50; // on ajoute des points lorsque la partie est finie dans le temps imparti
+            console.log(score);
+
             // Enregistrement du temps et du score
             let temps = duration - time + 1;
             saveFinPartie(temps, score);
@@ -308,7 +316,7 @@ function click(objet) {
     // Objet bloqué par un autre objet
     if ( type == 4) {
 
-        if ( ListObjetsAffiches.indexOf(idSolution) == -1 ) {
+        if ( idSolution != null && ListObjetsAffiches.indexOf(idSolution) == -1 ) {
             // Le 1er clique libère son objet solution
             AfficherObjet(idSolution);
         }
@@ -318,13 +326,25 @@ function click(objet) {
             let valClick = ListClicks.get(ibDebloquant);
             // et SI il est sélectionné
             if ( (valClick % 2 == 1) ) {
+                score += 150; // on ajoute des points lorsque l'objet est débloqué
+                console.log(score);
+
                 // Création de l'objet libéré par cet objet
                 AfficherObjet(idLibere);
                 // Suppression des marker des objets donc les id sont dans l'intervalle [ id ; idLibere [
                 for (i = id; i < idLibere; i++) {
                     deleteMarker(i);
                 }
+                
+                // Jouer l'audio, s'il existe 
+// et on emmene le joueur à destination ???
+                if (objet['audio'] != '') {
+                    var audio = new Audio(objet['audio']);
+                    setTimeout(audio.play(), 2000);
+// bouger map ????
+                }
             }
+
         }
     }
 
@@ -349,7 +369,7 @@ function clickInventaire(objet, imgInventaire){
 
 // Enregistrer le temps et le score du joueur 
 function saveFinPartie(temps, score) {
-    fetch('../php/resultats_perso.php?temps='+temps+'&score='+score)
+    fetch('../php/SaveResultPerso.php?temps='+temps+'&score='+score)
 }
 
 
