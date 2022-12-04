@@ -35,3 +35,4 @@ Sur mac:
 - Appuyez sur le bouton JOUER !
 - Renseignez votre nom, prénom et un pseudo et lancez le jeu.
 
+### A vous de jouer!
