@@ -1,20 +1,22 @@
 # Escape-Game
-Projet web ING2- Lisa ARgento et Claire Girardin
+Projet web ING2 - Lisa Argento et Claire Girardin
 
 ####
-Nous avons décidé de vous inviter dans la préparation de notre voyage à vélo à travers la France pour découvrir tous les paysages magnifiques méconnus [article](lien de l'article) 
-
-![](https://fr.wikipedia.org/wiki/La_Libert%C3%A9_guidant_le_peuple#/media/Fichier:Eug%C3%A8ne_Delacroix_-_Le_28_Juillet._La_Libert%C3%A9_guidant_le_peuple.jpg)
+Nous avons décidé de vous inviter dans notre premier voyage à vélo à travers la France pour découvrir une magnique région et des paysages méconnus.
 
 Pour nous aider il suffit de suivre les instructions qui suivent !
 
+
 ### Installation
-- télécharger tous les documents 
+- Téléchargez tous les documents du dossier "télécharger" sur votre ordinateur.
+- Lancez MAMP et renseignez (dans Préférences - SERVER) le chemin vers le document "accueil.html" présent dans la racine du dossier téléchargement.
+- Connectez la base de données en ligne en suivant les indications ci-dessous.
 
 POUR LA BDD :
-- utiliser MAMP
-- créer manuellement une base de données nommée "bddescapegame" dans MySQL de MAMP.
-- importer le fichier "bddescapegame.sql" dans cette BDD (! ATTENTION ! Assurez vous que l'identifiant et le mot de passe sont corrects.)
+- Sur MAMP, cliquez sur "Open WebStart page".
+- Cliquez sur le lien vers phpMyAdmin dans le paragraphe PhpMyAdmin.
+- Créez manuellement une base de données nommée "bddescapegame" en cliquant sur "New".
+- importer le fichier "bddescapegame.sql" dans cette BDD (! ATTENTION ! Assurez vous que l'identifiant et le mot de passe sont corrects)
 
 Sur windows:
 
@@ -28,5 +30,10 @@ Sur mac:
 ```
 
 ### Pour commencer
-Il vous suffit de rentrer vos information et de lancer le jeu.
+- Tapez "localhost" dans la barre d'un moteur de recherche (en vous assurant que MAMP est toujours actif).
+- Activez le son de votre ordinateur.
+- Lisez attentivement les conseils de la page d'accueil.
+- Appuyez sur le bouton JOUER !
+- Renseignez votre nom, prénom et un pseudo et lancez le jeu.
 
+### A vous de jouer !
