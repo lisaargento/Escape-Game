@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 5.1.2
 -- https://www.phpmyadmin.net/
 --
--- Hôte : localhost:8889
--- Généré le : dim. 04 déc. 2022 à 23:14
--- Version du serveur :  5.7.34
--- Version de PHP : 7.4.21
+-- Host: localhost:3306
+-- Generation Time: Dec 05, 2022 at 12:04 AM
+-- Server version: 5.7.24
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données : `bddescapegame`
+-- Database: `bddescapegame`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `jeu`
+-- Table structure for table `jeu`
 --
 
 CREATE TABLE `jeu` (
@@ -45,7 +45,7 @@ CREATE TABLE `jeu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `jeu`
+-- Dumping data for table `jeu`
 --
 
 INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`, `height`, `minzoom`, `URLicone`, `type`, `idSolution`, `idDebloquant`, `idLibere`, `audio`) VALUES
@@ -57,7 +57,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`,
 (6, 'Places', 'J’avais prévu qu’on aille voir la plus grande fierté des Montois avant de commencer le tour de Bretagne.\r\n<br> <br>\r\nIndice : Le code est caché dans des photos.', 48.2766, -3.55418, 100, 100, 14, '../img/place.png', 3, 7, 5712, 9, ''),
 (7, 'Mont Saint Michel', 'Le saviez-vous ?\r\n<br><br>\r\nCet îlot rocheux consacré à saint Michel est une étape des Chemins de Saint-Jacques-de-Compostelle. Il figure, avec sa baie, sur la liste du patrimoine mondiale de l\'UNESCO depuis 1979. A l\'origine nommé Mont Tombe, il y fut érigé un oratoire en l\'honneur de l\'archange saint Michel en 708 qui lui donnera plus tard l\'appellation qu\'on lui connait aujourd\'hui.', 48.6358, -1.51194, 500, 400, 16, '../img/mont.png', 1, 8, NULL, NULL, ''),
 (8, 'Dinan', '', 48.4572, -2.03774, 300, 260, 15, '../img/photo_dinan.jpg', 1, NULL, NULL, NULL, ''),
-(9, 'Carte postale', 'On y va à vélo?', 48.2766, -3.55418, 270, 210, 16, '../img/carte_postale.png', 4, NULL, 5, 10, '../audio/crozon.M4A'),
+(9, 'Carte postale', 'On y va à vélo?', 48.2766, -3.55418, 270, 210, 14, '../img/carte_postale.png', 4, NULL, 5, 10, '../audio/crozon.M4A'),
 (10, 'maison de Malo', 'On peut passer voir Malo ! Il me semble qu\'il est à Concarneau en ce moment ...', 48.2419, -4.4927, 100, 100, 14, '../img/maison.png', 3, 11, 16, 12, ''),
 (11, 'tete de Malo', '', 47.877, -3.90788, 180, 200, 15, '../img/malo.png', 1, NULL, NULL, NULL, ''),
 (12, 'crepe', '', 48.2419, -4.4927, 150, 150, 14, '../img/crepe.png', 2, NULL, NULL, NULL, '../audio/fin.m4a');
@@ -65,7 +65,7 @@ INSERT INTO `jeu` (`id`, `nomobjet`, `indice`, `latitude`, `longitude`, `width`,
 -- --------------------------------------------------------
 
 --
--- Structure de la table `joueurs`
+-- Table structure for table `joueurs`
 --
 
 CREATE TABLE `joueurs` (
@@ -78,53 +78,55 @@ CREATE TABLE `joueurs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `joueurs`
+-- Dumping data for table `joueurs`
 --
 
 INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `score`) VALUES
-(44, 'Girardin', 'Claire', 'clairette1', 1100, 500),
-(45, 'Girardin', 'Claire', 'clairette2', 1100, 600),
-(46, 'Girardin', 'Claire', 'clairette3', 900, 500),
-(47, 'Girardin', 'Claire', 'clairette4', 1200, 700),
-(48, 'Girardin', 'Claire', 'clairette5', 300, 1000),
-(49, 'Girardin', 'Claire', 'clairette6', 500, 1000),
-(50, 'Girardin', 'Claire', 'clairette7', 500, 1025),
-(51, 'Girardin', 'Claire', 'clairette8', 400, 1200),
-(52, 'Girardin', 'Claire', 'clairette9', 700, 950),
+(44, 'Argento', 'Lisa', 'Marco', 1100, 500),
+(45, 'pp', 'pp', 'Lison', 1100, 600),
+(46, 'Girardin', 'Claire', 'Clairette', 900, 500),
+(47, 'a', 'a', 'Machaussette', 1200, 700),
+(48, 'A', 'L', 'Lisouille', 300, 1000),
+(49, 'Girardin', 'Claire', 'La meilleure', 500, 1000),
+(50, 'Girardin', 'Claire', 'Poulette', 500, 1025),
+(51, 'Girardin', 'Claire', 'CoIGN-CoIGN', 400, 1100),
+(52, 'Argt', 'Lisa', 'Poussin', 700, 950),
 (53, 'Girardin', 'Claire', 'clairette10', 750, 950),
-(54, 'Girardin', 'Claire', 'clairette11', 500, 800);
+(54, 'Girardin', 'Claire', 'clairette11', 500, 800),
+(55, 'Ma', 'Chaussette', 'UnCanap', 3, 820),
+(56, 'Ma', 'Chaussette', 'Toute en tissu', 221, 1025);
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `jeu`
+-- Indexes for table `jeu`
 --
 ALTER TABLE `jeu`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `joueurs`
+-- Indexes for table `joueurs`
 --
 ALTER TABLE `joueurs`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `jeu`
+-- AUTO_INCREMENT for table `jeu`
 --
 ALTER TABLE `jeu`
   MODIFY `id` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT pour la table `joueurs`
+-- AUTO_INCREMENT for table `joueurs`
 --
 ALTER TABLE `joueurs`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
