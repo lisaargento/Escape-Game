@@ -154,7 +154,7 @@ function TraitementObjet(objet) {
     // Définition du popup en fonction du type de l'objet
     if ( objet['indice'] != '' ) {
         // Création d'un popup uniquement s'il y a un indice associé à l'objet
-        marker.bindPopup(ContenuPopup(objet, typeObjet));
+        marker.bindPopup(ContenuPopup(objet));
     }
     
     // Affichage du marker de l'objet en fonction du zoom
@@ -165,16 +165,17 @@ function TraitementObjet(objet) {
     console.log(ListMarkers);
 
     // Actions du click en fonction des paramètres de l'objet considéré
-    marker.addEventListener( 'click', function() { click(objet, marker) } );
+    marker.addEventListener( 'click', function() { click(objet) } );
 
 }
 
 
 
 // Définir le contenu d'une popup en fonction du type de l'objet considéré
-function ContenuPopup(objet, typeObjet) {
+function ContenuPopup(objet) {
     var popup = document.createElement('div');
     popup.style.textAlign = 'justify';
+    var typeObjet = objet['type'];
     if ( typeObjet == 3 ) {
         // Création d'un formulaire dans le popup lorsqu'il s'agit d'un objet bloqué par un code
         popup.innerHTML = '<div> <p>'+objet['indice']+'</p> <form><p><input type="text" name="code" id="code" placeholder="Trouve le code ..."></p>'
@@ -337,17 +338,13 @@ function click(objet) {
                 }
                 
                 // Jouer l'audio, s'il existe 
-// et on emmene le joueur à destination ???
                 if (objet['audio'] != '') {
                     var audio = new Audio(objet['audio']);
-                    setTimeout(audio.play(), 2000);
-// bouger map ????
+                    audio.play();
                 }
             }
-
         }
     }
-
 }
 
 
@@ -378,6 +375,7 @@ function alertFinPartie() {
     alert('BRAVO ! Vous avez fini le jeu dans le temps imparti.');
     window.location.href = '../resultats_perso.html';
 }
+
 
 
 

@@ -82,16 +82,16 @@ CREATE TABLE `joueurs` (
 --
 
 INSERT INTO `joueurs` (`id`, `nom`, `prenom`, `pseudo`, `temps`, `score`) VALUES
-(44, 'Argento', 'Lisa', 'Marco', 1100, 500),
-(45, 'pp', 'pp', 'Lison', 1100, 600),
-(46, 'Girardin', 'Claire', 'Poulette', 900, 500),
-(47, 'a', 'a', 'Machaussette', 1200, 700),
-(48, 'A', 'L', 'Lisouille', 300, 1000),
-(49, 'Girardin', 'Claire', 'Clairette', 500, 102O),
-(50, 'Girardin', 'Claire', 'CoIGN-CoIGN', 400, 1025),
-(51, 'Argt', 'Lisa', 'Poussin', 700, 950),
-(52, 'Girardin', 'Claire', 'clairette10', 750, 950),
-(53, 'Ma', 'Chaussette', 'UnCanap', 3, 820);
+(1, 'Argento', 'Lisa', 'Marco', 1100, 500),
+(2, 'pp', 'pp', 'Lison', 1100, 600),
+(3, 'Girardin', 'Claire', 'Poulette', 900, 500),
+(4, 'a', 'a', 'Machaussette', 1200, 700),
+(5, 'A', 'L', 'Lisouille', 300, 1000),
+(6, 'Girardin', 'Claire', 'Clairette', 500, 1020),
+(7, 'Girardin', 'Claire', 'CoIGN-CoIGN', 400, 1025),
+(8, 'Argt', 'Lisa', 'Poussin', 700, 950),
+(9, 'Girardin', 'Claire', 'clairette10', 750, 950),
+(10, 'Ma', 'Chaussette', 'UnCanap', 3, 820);
 
 --
 -- Indexes for dumped tables
