@@ -49,7 +49,7 @@ Mais par exemple pour la cas de la carte postale :
 C’est ce troisième point qu’il faudrait modifier en ne laissant pas la carte postale être débloquée. Une sorte d’unicité de la solution.
 Idées possibles :  
 `Laisser la possibilité de sélectionner plusieurs objets mais ne débloquer l’objet uniquement si seul(s) son/ses objet(s) débloquant est/sont sélectionné(s)(cela laisse ainsi la possibilité de modifier la base de données pour qu’un objet bloqué par un autre objet puisse être bloqué par plusieurs objets, ce qui implique une sélection multiple dans l’inventaire).`
-`OU`
+OU
 `Forcer une seule sélection possible dans l’inventaire. C’est-à-dire que si l’on clique sur un objet de l’inventaire non sélectionné, cela le sélectionne et désélectionne l’objet sélectionné précédemment (s’il y en a un).`
 
 
