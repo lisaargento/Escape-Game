@@ -40,8 +40,8 @@ Si ce n'est pas le cas, changez à la ligne "$link = mysqli_connect('localhost',
 ### Nos pistes d'amélioration
 
 - Obliger l’unicité de la sélection dans l’inventaire pour débloquer un objet bloqué par un autre objet.
-Pour débloquer un objet bloqué par un autre objet, il faut actuellement sélectionner, dans l’inventaire, l’objet débloquant.
-Mais par exemple pour la cas de la carte postale :  
+Pour débloquer un objet bloqué par un autre objet, il faut actuellement sélectionner, dans l’inventaire, l’objet débloquant.  
+Mais par exemple pour le cas de la carte postale :  
 1)`Si les vélos sont sélectionnés, la carte postale est débloquée.`  
 2)`Si la boite à outils est sélectionnée, la carte postale n’est pas débloquée.`  
 3)`MAIS Si les vélos et la boite à outils sont sélectionnés, la carte postale est débloquée.`
